@@ -17,6 +17,8 @@
 |access_token |否  |string | 用户秘钥   |
 |phone     |是  |string | 手机号    |
 |password     |是  |string | 密码|
+|code_no     |是  |string | 验证码编号|
+|code     |是  |string | 手机验证码|
 
  **返回示例**
 
