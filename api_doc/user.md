@@ -19,6 +19,7 @@
 |password     |是  |string | 密码|
 |code_no     |是  |string | 验证码编号|
 |code     |是  |string | 手机验证码|
+|is_teacher     |是  |int | 是否是教师 0=否 1=是|
 
  **返回示例**
 
