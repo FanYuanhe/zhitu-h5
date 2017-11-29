@@ -43,6 +43,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
+  @import 'static/css/mixin';
   @import 'static/widget/swiper/swiper';
   .head {
     background: #fff;

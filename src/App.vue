@@ -12,5 +12,4 @@ export default {
 
 <style lang="scss">
   @import 'static/css/reset';
-  @import 'static/css/mixin';
 </style>

@@ -6,7 +6,6 @@ import TeacherList from '@/components/TeacherList'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
   routes: [
     {
       path: '/',
