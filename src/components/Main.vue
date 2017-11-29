@@ -15,6 +15,49 @@
       </div>
       <div class="swiper-pagination"></div>
     </div>
+    <div class="subject-box">
+      <ul class="clearfix">
+        <li>
+          <img src="static/img/userlogo.png" alt="">
+          <p>数学</p>
+        </li>
+        <li>
+          <img src="static/img/userlogo.png" alt="">
+          <p>数学</p>
+        </li>
+        <li>
+          <img src="static/img/userlogo.png" alt="">
+          <p>数学</p>
+        </li>
+        <li>
+          <img src="static/img/userlogo.png" alt="">
+          <p>数学</p>
+        </li>
+        <li>
+          <img src="static/img/userlogo.png" alt="">
+          <p>数学</p>
+        </li>
+        <li>
+          <img src="static/img/userlogo.png" alt="">
+          <p>数学</p>
+        </li>
+        <li>
+          <img src="static/img/userlogo.png" alt="">
+          <p>数学</p>
+        </li>
+        <li>
+          <img src="static/img/userlogo.png" alt="">
+          <p>数学</p>
+        </li>
+        <li>
+          <img src="static/img/userlogo.png" alt="">
+          <p>数学</p>
+        </li>
+      </ul>
+    </div>
+    <div class="hot-teacher">
+      热门教师
+    </div>
   </div>
 </template>
 
@@ -45,7 +88,13 @@ export default {
 <style lang="scss">
   @import 'static/css/mixin';
   @import 'static/widget/swiper/swiper';
-  .head {
+  .clearfix::after {
+    display: block;
+    content: "";
+    height: 0;
+    clear: both;
+  }
+  .head,.subject-box {
     background: #fff;
   }
   .head {
@@ -54,11 +103,9 @@ export default {
     img:nth-of-type(1) {
       width: Rem(85);
       height: Rem(17);
-      margin-left: Rem(15);
     }
     .my {
       float: right;
-      margin-right: Rem(15);
       img {
         width: Rem(15);
         height: Rem(15);
@@ -80,5 +127,33 @@ export default {
   }
   .swiper-pagination {
     bottom: 0 !important;
+  }
+  .subject-box {
+    height: Rem(72);
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: Rem(14) 0;
+    li {
+      width: 20%;
+      display: inline-block;
+      font-size: 0;
+      text-align: center;
+      img {
+         width: Rem(48);
+         height: Rem(48);
+         border-radius: 100%;
+      }
+     p {
+       font-size: Rem(16);
+       color: #262323;
+       margin-top: Rem(8);
+     }
+    }
+  }
+  .hot-teacher {
+    font-size: Rem(20);
+    color: #ff7200;
+    padding: Rem(15);
   }
 </style>
