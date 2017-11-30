@@ -17,53 +17,48 @@
     </div>
     <div class="subject-box">
       <ul class="clearfix">
-        <li>
-          <img src="static/img/userlogo.png" alt="">
-          <p>数学</p>
-        </li>
-        <li>
-          <img src="static/img/userlogo.png" alt="">
-          <p>数学</p>
-        </li>
-        <li>
-          <img src="static/img/userlogo.png" alt="">
-          <p>数学</p>
-        </li>
-        <li>
-          <img src="static/img/userlogo.png" alt="">
-          <p>数学</p>
-        </li>
-        <li>
-          <img src="static/img/userlogo.png" alt="">
-          <p>数学</p>
-        </li>
-        <li>
-          <img src="static/img/userlogo.png" alt="">
-          <p>数学</p>
-        </li>
-        <li>
-          <img src="static/img/userlogo.png" alt="">
-          <p>数学</p>
-        </li>
-        <li>
-          <img src="static/img/userlogo.png" alt="">
-          <p>数学</p>
-        </li>
-        <li>
-          <img src="static/img/userlogo.png" alt="">
-          <p>数学</p>
-        </li>
+        <router-link :to="{ name: 'TeacherList', params: {} }">
+          <li>
+            <img src="static/img/userlogo.png" alt="">
+            <p>数学</p>
+          </li>
+        </router-link>
+        <router-link :to="{ name: 'TeacherList', params: {} }">
+          <li>
+            <img src="static/img/userlogo.png" alt="">
+            <p>数学</p>
+          </li>
+        </router-link>
+        <router-link :to="{ name: 'TeacherList', params: {} }">
+          <li>
+            <img src="static/img/userlogo.png" alt="">
+            <p>数学</p>
+          </li>
+        </router-link>
+        <router-link :to="{ name: 'TeacherList', params: {} }">
+          <li>
+            <img src="static/img/userlogo.png" alt="">
+            <p>数学</p>
+          </li>
+        </router-link>
+        <router-link :to="{ name: 'TeacherList', params: {} }">
+          <li>
+            <img src="static/img/userlogo.png" alt="">
+            <p>数学</p>
+          </li>
+        </router-link>
       </ul>
     </div>
     <div class="hot-teacher">
       热门教师
     </div>
+    <TeacherListComponent></TeacherListComponent>
   </div>
 </template>
 
 <script>
 import Swiper from '../../static/widget/swiper/swiper'
-import TeacherList from '@components/TeacherList'
+import TeacherListComponent from './TeacherListComponent.vue'
 export default {
   name: 'Main',
   data () {
@@ -81,7 +76,7 @@ export default {
   methods: {
 
   },
-  components: { TeacherList }
+  components: { TeacherListComponent }
 }
 </script>
 
@@ -146,7 +141,7 @@ export default {
          border-radius: 100%;
       }
      p {
-       font-size: Rem(16);
+       font-size: Rem(14);
        color: #262323;
        margin-top: Rem(8);
      }

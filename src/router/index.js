@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Main from '@/components/Main'
-// import TeacherList from '@/components/TeacherList'
+const Main = () => import('@/components/Main.vue')
+const TeacherDetail = () => import('@/components/TeacherDetail.vue')
+const TeacherList = () => import('@/components/TeacherList.vue')
 
 Vue.use(Router)
 
@@ -11,11 +12,16 @@ export default new Router({
       path: '/',
       name: 'Main',
       component: Main
+    },
+    {
+      path: '/teacher_detail',
+      name: 'TeacherDetail',
+      component: TeacherDetail
+    },
+    {
+      path: '/teacher_list',
+      name: 'TeacherList',
+      component: TeacherList
     }
-    // {
-    //   path: '/teacher_list',
-    //   name: 'TeacherList',
-    //   component: TeacherList
-    // }
   ]
 })
