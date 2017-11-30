@@ -81,7 +81,7 @@ export default {
   methods: {
 
   },
-  components: {}
+  components: { TeacherList }
 }
 </script>
 
