@@ -63,6 +63,7 @@
 
 <script>
 import Swiper from '../../static/widget/swiper/swiper'
+import TeacherList from '@components/TeacherList'
 export default {
   name: 'Main',
   data () {
@@ -152,7 +153,7 @@ export default {
     }
   }
   .hot-teacher {
-    font-size: Rem(20);
+    font-size: Rem(18);
     color: #ff7200;
     padding: Rem(15);
   }
