@@ -1,36 +1,39 @@
 <template lang="html">
   <div class="teacher-list">
-    <router-link :to="{ name: 'TeacherDetail', params: {} }">
-    <div class="teacher-item">
-      <img src="static/img/userlogo.png" alt="">
-      <div class="teacher-info">
-        <p class="detail">
-          <span class="name">陈老师</span>
-          <span class="sub-tag">数学</span>
-          <span class="grade-tag">小</span>
-          <span class="grade-tag">中</span>
-          <span class="grade-tag">高</span>
-          <span class="teach-times">已授课300小时</span>
-        </p>
-        <p class="school">
-          <span>九年教龄</span>
-          <span>中央美术学院</span>
-          <span>物理系</span>
-        </p>
-        <p class="accept">
-          <span>大学生</span>
-          <span>已认证</span>
-          <span>明星教师</span>
-        </p>
-      </div>
-    </div>
-    </router-link>
+    <template v-for="item in teacherList">
+      <router-link :to="{ name: 'TeacherDetail', params: {} }">
+        <div class="teacher-item">
+          <img src="static/img/userlogo.png" alt="">
+          <div class="teacher-info">
+            <p class="detail">
+              <span class="name">陈老师</span>
+              <span class="sub-tag">数学</span>
+              <span class="grade-tag">小</span>
+              <span class="grade-tag">中</span>
+              <span class="grade-tag">高</span>
+              <span class="teach-times">已授课300小时</span>
+            </p>
+            <p class="school">
+              <span>九年教龄</span>
+              <span>中央美术学院</span>
+              <span>物理系</span>
+            </p>
+            <p class="accept">
+              <span>大学生</span>
+              <span>已认证</span>
+              <span>明星教师</span>
+            </p>
+          </div>
+        </div>
+      </router-link>
+    </template>
   </div>
 </template>
 
 <script>
 export default {
   name: 'TeacherListComponent',
+  props: ['teacherList'],
   data () {
     return {
 

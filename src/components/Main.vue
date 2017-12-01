@@ -52,19 +52,27 @@
     <div class="hot-teacher">
       热门教师
     </div>
-    <TeacherListComponent></TeacherListComponent>
+    <template v-if="mainInfo.teacher">
+      <TeacherListComponent :teacherList=mainInfo.teacher></TeacherListComponent>
+    </template>
   </div>
 </template>
 
 <script>
 import Swiper from '../../static/widget/swiper/swiper'
 import TeacherListComponent from './TeacherListComponent.vue'
+import { Indicator, Toast } from 'mint-ui'
 export default {
   name: 'Main',
   data () {
     return {
-
+      mainInfo: {}
     }
+  },
+  beforeCreate () {
+    Indicator.open({
+      spinnerType: 'fading-circle'
+    })
   },
   mounted () {
     Swiper('.swiper-container', {
@@ -72,9 +80,31 @@ export default {
       loop: true,
       pagination: '.swiper-pagination'
     })
+    this.getMainInfo()
   },
   methods: {
-
+    getMainInfo () {
+      this.axios.get(
+        'http://api.zhituteam.com/api/index'
+      ).then((res) => {
+        const dataRes = res.data
+        if (dataRes.message === 'success') {
+          this.mainInfo = dataRes.data
+        } else {
+          Toast({
+            message: dataRes.message,
+            position: 'middle',
+            duration: 5000
+          })
+        }
+      }).catch((err) => {
+        Toast({
+          message: err.data.data.message,
+          position: 'middle',
+          duration: 5000
+        })
+      })
+    }
   },
   components: { TeacherListComponent }
 }
