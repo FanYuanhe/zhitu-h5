@@ -5,11 +5,7 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import 'mint-ui/lib/style.css'
-import { Button, Indicator, Toast } from 'mint-ui'
 Vue.prototype.axios = axios
-Vue.use(Button)
-Vue.use(Indicator)
-Vue.use(Toast)
 
 Vue.config.productionTip = false
 

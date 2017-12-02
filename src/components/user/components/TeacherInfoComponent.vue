@@ -1,53 +1,43 @@
 <template lang="html">
-  <div class="teacher-list">
-    <template v-for="item in teacherList">
-      <router-link :to="{ name: 'TeacherDetail', params: {} }">
-        <div class="teacher-item">
-          <img :src="item.image" alt="">
-          <div class="teacher-info">
-            <p class="detail">
-              <span class="name">{{ item.name }}</span>
-              <template v-for="sub in item.subject">
-                <span class="sub-tag">{{ sub.label }}</span>
-              </template>
-              <template v-for="grade in item.grade">
-                <span class="grade-tag">{{ grade.label }}</span>
-              </template>
-              <span class="teach-times">授课{{ item.teach_time }}小时</span>
-            </p>
-            <p class="school">
-              <span>九年教龄</span>
-              <span>中央美术学院</span>
-              <span>物理系</span>
-            </p>
-            <p class="accept">
-              <span>大学生</span>
-              <span>已认证</span>
-              <span>明星教师</span>
-            </p>
-          </div>
-        </div>
-      </router-link>
-    </template>
+  <div class="a teacher-item">
+    <img src="static/img/userlogo.png" alt="">
+    <div class="teacher-info-text">
+      <p class="detail">
+        <span class="name">陈老师</span>
+        <span class="sub-tag">数学</span>
+        <span class="grade-tag">小</span>
+        <span class="grade-tag">中</span>
+        <span class="grade-tag">高</span>
+        <span class="teach-times">¥300/小时</span>
+      </p>
+      <p class="school">
+        <span>九年教龄</span>
+        <span>中央美术学院</span>
+        <span>物理系</span>
+      </p>
+      <p class="accept">
+        <span>大学生</span>
+        <span>已认证</span>
+      </p>
+      <i>已授课300小时</i>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'TeacherListComponent',
-  props: ['teacherList'],
+  name: 'TeacherInfoComponent',
   data () {
     return {
 
     }
-  },
-  components: {}
+  }
 }
 </script>
 
 <style lang="scss" scoped>
   @import 'static/css/mixin';
-  .teacher-item {
+  .a,.teacher-item {
     background: #fff;
     height: Rem(110);
     padding-left: Rem(110);
@@ -60,7 +50,7 @@ export default {
       width: Rem(80);
       height: Rem(80);
     }
-    .teacher-info {
+    .teacher-info-text {
       height: Rem(110);
       font-size: 0;
     }
@@ -88,7 +78,7 @@ export default {
       }
       .grade-tag {
         display: inline-block;
-        // width: Rem(15);
+        width: Rem(15);
         text-align: center;
         height: Rem(15);
         line-height: Rem(15);
@@ -99,10 +89,9 @@ export default {
       }
       .teach-times {
         font-size: Rem(13);
-        color: #888;
+        color: #ee4034;
         float: right;
         margin-right: Rem(15);
-        margin-top: Rem(4);
       }
     }
     .school {
@@ -125,7 +114,7 @@ export default {
         margin-left: Rem(4);
         display: inline-block;
         padding-left: Rem(16);
-        background-image: url('../../static/img/accept.png');
+        background-image: url('../../../../static/img/accept.png');
         background-repeat: no-repeat;
         background-size: Rem(15) Rem(15);
         background-position: Rem(0) Rem(2);
@@ -133,6 +122,14 @@ export default {
       span:nth-of-type(1) {
         margin-left: 0;
       }
+    }
+    i {
+      font-style: normal;
+      font-size: Rem(13);
+      color: #888;
+      position: absolute;
+      right: Rem(15);
+      bottom: Rem(15);
     }
   }
 </style>

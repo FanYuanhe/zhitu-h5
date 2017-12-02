@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-const Main = () => import('@/components/Main.vue')
-const TeacherDetail = () => import('@/components/TeacherDetail.vue')
-const TeacherList = () => import('@/components/TeacherList.vue')
+const Main = () => import('@/components/user/Main.vue')
+const TeacherDetail = () => import('@/components/user/TeacherDetail.vue')
+const TeacherList = () => import('@/components/user/TeacherList.vue')
 
 Vue.use(Router)
 

@@ -37,8 +37,8 @@
 </template>
 
 <script>
-import Swiper from '../../static/widget/swiper/swiper'
-import TeacherListComponent from './TeacherListComponent.vue'
+import Swiper from '../../../static/widget/swiper/swiper'
+import TeacherListComponent from './components/TeacherListComponent.vue'
 import { Indicator, Toast } from 'mint-ui'
 export default {
   name: 'Main',

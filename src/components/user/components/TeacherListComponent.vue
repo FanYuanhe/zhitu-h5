@@ -125,7 +125,7 @@ export default {
         margin-left: Rem(4);
         display: inline-block;
         padding-left: Rem(16);
-        background-image: url('../../static/img/accept.png');
+        background-image: url('../../../../static/img/accept.png');
         background-repeat: no-repeat;
         background-size: Rem(15) Rem(15);
         background-position: Rem(0) Rem(2);
