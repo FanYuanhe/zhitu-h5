@@ -3,9 +3,29 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import axios from 'axios'
 import 'mint-ui/lib/style.css'
+import axios from 'axios'
+import { Indicator, Toast } from 'mint-ui'
 Vue.prototype.axios = axios
+
+axios.interceptors.response.use(function (response) {
+  // 对响应数据做点什么
+  return response;
+}, function (error) {
+    // 对响应错误做点什么
+  Indicator.close();
+  const errorMsg = error.response ? error.response.data.error_msg : error.message;
+  Toast({
+    message: errorMsg,
+    duration: 3000
+  })
+  console.log(error.config);
+  return Promise.reject(error);
+});
+
+// axios.defaults.headers.common['access_token'] = 'ddsdsadsda';
+// axios.defaults.headers.common['app_key'] = '34567894567';
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 Vue.config.productionTip = false
 

@@ -47,11 +47,6 @@ export default {
       mainInfo: {}
     }
   },
-  beforeCreate () {
-    Indicator.open({
-      spinnerType: 'fading-circle'
-    })
-  },
   mounted () {
     Swiper('.swiper-container', {
       autoplay: '1000',
@@ -64,9 +59,14 @@ export default {
   },
   methods: {
     getMainInfo () {
-      this.axios.get(
-        'http://api.zhituteam.com/api/index'
-      ).then((res) => {
+      Indicator.open({
+        spinnerType: 'fading-circle'
+      })
+      this.axios({
+        method: 'get',
+        url: 'http://api.zhituteam.com/api/index'
+      })
+      .then((res) => {
         const dataRes = res.data;
         if (dataRes.message === 'success') {
           this.mainInfo = dataRes.data;
@@ -78,12 +78,6 @@ export default {
             duration: 2000
           });
         }
-      }).catch(() => {
-        Toast({
-          message: '网络错误',
-          position: 'middle',
-          duration: 2000
-        })
       })
     }
   },

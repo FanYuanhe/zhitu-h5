@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import PublicJs from '../static/js/public'
+window.V = PublicJs
 export default {
   name: 'app'
 }
