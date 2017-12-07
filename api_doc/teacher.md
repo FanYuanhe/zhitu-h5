@@ -19,6 +19,8 @@
 |subject     |否  |string | 科目    |
 |grade     |否  |string | 年纪    |
 |type     |否  |string | 类型    |
+|offset |是  |string | 偏移量 |
+|limit |是  |string | 每页数量   |
 
  **返回示例**
 
