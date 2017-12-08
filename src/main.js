@@ -5,7 +5,8 @@ import App from './App'
 import router from './router'
 import 'mint-ui/lib/style.css'
 import axios from 'axios'
-import { Indicator, Toast } from 'mint-ui'
+import { Indicator, Toast, InfiniteScroll } from 'mint-ui'
+Vue.use(InfiniteScroll)
 Vue.prototype.axios = axios
 
 axios.interceptors.response.use(function (response) {

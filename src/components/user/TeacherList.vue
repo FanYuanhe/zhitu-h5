@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="teachers-list" v-if="mainInfo">
+  <div class="teachers-list" v-if="mainInfo" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
     <div class="search-bar">
       <span :class="moduleSelected=='grade'?'module-selected':'module'" data-module="grade" @click="searchModule($event)">年级<i></i></span>
       <span :class="moduleSelected=='subject'?'module-selected':'module'" data-module="subject" @click="searchModule($event)">学科<i></i></span>
@@ -127,6 +127,15 @@ export default {
       this.isShowTips = false;
       this.isClickedModuleItem = false;
       this.moduleSelected = null;
+    },
+    loadMore () {
+      Indicator.open({
+        spinnerType: 'fading-circle'
+      });
+      setTimeout(() => {
+        this.getTeacherList();
+        Indicator.close();
+      }, 2500);
     }
   },
   components: { TeacherListComponent }
