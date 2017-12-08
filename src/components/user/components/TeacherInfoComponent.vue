@@ -1,13 +1,15 @@
 <template lang="html">
-  <div class="a teacher-item">
-    <img src="static/img/userlogo.png" alt="">
+  <div class="teacher-item">
+    <img :src="teacherDetail.image" alt="">
     <div class="teacher-info-text">
       <p class="detail">
-        <span class="name">陈老师</span>
-        <span class="sub-tag">数学</span>
-        <span class="grade-tag">小</span>
-        <span class="grade-tag">中</span>
-        <span class="grade-tag">高</span>
+        <span class="name">{{ teacherDetail.name }}</span>
+        <template v-for="item in teacherDetail.subject">
+          <span class="sub-tag">{{ item.label }}</span>
+        </template>
+        <template v-for="item in teacherDetail.grade">
+          <span class="grade-tag">{{ item.label }}</span>
+        </template>
         <span class="teach-times">¥300/小时</span>
       </p>
       <p class="school">
@@ -16,10 +18,11 @@
         <span>物理系</span>
       </p>
       <p class="accept">
-        <span>大学生</span>
-        <span>已认证</span>
+        <template v-for="item in teacherDetail.extend_tag">
+          <span>{{ item.label }}</span>
+        </template>
       </p>
-      <i>已授课300小时</i>
+      <i>已授课{{ teacherDetail.teach_time }}小时</i>
     </div>
   </div>
 </template>
@@ -27,6 +30,7 @@
 <script>
 export default {
   name: 'TeacherInfoComponent',
+  props: ['teacherDetail'],
   data () {
     return {
 
@@ -78,7 +82,6 @@ export default {
       }
       .grade-tag {
         display: inline-block;
-        width: Rem(15);
         text-align: center;
         height: Rem(15);
         line-height: Rem(15);

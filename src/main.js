@@ -23,8 +23,8 @@ axios.interceptors.response.use(function (response) {
   return Promise.reject(error);
 });
 
-// axios.defaults.headers.common['access_token'] = 'ddsdsadsda';
-// axios.defaults.headers.common['app_key'] = '34567894567';
+axios.defaults.headers.common['access_token'] = 'ddsdsadsda';
+axios.defaults.headers.common['app_key'] = '34567894567';
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 Vue.config.productionTip = false

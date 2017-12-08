@@ -1,26 +1,30 @@
 <template lang="html">
-  <div class="teacher-detail">
-    <TeacherInfoComponent></TeacherInfoComponent>
+  <div class="teacher-detail" v-if="mainInfo.teacher">
+    <TeacherInfoComponent :teacherDetail=mainInfo.teacher></TeacherInfoComponent>
     <div class="info-box">
-      <div class="assess-teacher-info">
+      <div class="assess-teacher-info" v-if="mainInfo.teacher.intro != ''">
         <p class="title">个人简介</p>
         <div class="content">
-          <p>哈哈哈哈哈哈哈哈哈将电话卡建设的科技啊啥的空间啊啥的空间撒谎的空间啊啥的</p>
+          <p>{{ mainInfo.teacher.intro }}</p>
         </div>
       </div>
-      <div class="assess-teacher-info">
+      <div class="assess-teacher-info" v-if="mainInfo.teacher.teacher_experience.length>0">
         <p class="title">获奖经历</p>
         <div class="content">
-          <p>哈哈哈</p>
-          <p>客户端就撒的卡还是大卡</p>
-          <p>还是大卡</p>
+          <template v-for="item in mainInfo.teacher.teacher_experience">
+            <p>{{ item.title }}</p>
+          </template>
         </div>
       </div>
-      <div class="assess-teacher-info">
+      <div class="assess-teacher-info" v-if="mainInfo.teacher.teacher_case.length>0">
         <p class="title">家教经历</p>
-        <div class="content">
-          <p>哈哈哈哈哈哈哈哈哈将电话卡建设的科技啊啥的空间啊啥的空间撒谎的空间啊啥的</p>
-        </div>
+        <template v-for="(item, index) in mainInfo.teacher.teacher_case">
+          <div class="content" :class="index==mainInfo.teacher.teacher_case.length-1?'':'teach-case-content'">
+            <p><span>{{ item.start_time }}</span> 至 <span>{{ item.end_time }}</span></p>
+            <p class="teach-title">{{ item.title }}</p>
+            <p>{{ item.content }}</p>
+          </div>
+        </template>
       </div>
     </div>
     <div class="assess-box assess-teacher-info">
@@ -43,11 +47,39 @@
 <script>
 import TeacherInfoComponent from './components/TeacherInfoComponent.vue'
 import TeacherAssessComponent from './components/TeacherAssessComponent.vue'
+import { Indicator, Toast } from 'mint-ui'
 export default {
   name: 'TeacherDetail',
   data () {
     return {
-
+      mainInfo: {}
+    }
+  },
+  mounted () {
+    this.getDoctorDetail();
+  },
+  methods: {
+    getDoctorDetail () {
+      Indicator.open({
+        spinnerType: 'fading-circle'
+      })
+      var that = this;
+      that.axios({
+        url: `http://api.zhituteam.com/api/teacher/info/id/${that.$router.history.current.params.id}`,
+        method: 'get'
+      }).then((res) => {
+        const dataRes = res.data;
+        if (dataRes.message === 'success') {
+          this.mainInfo = dataRes.data;
+          Indicator.close();
+        } else {
+          Toast({
+            message: dataRes.message,
+            position: 'middle',
+            duration: 2000
+          });
+        }
+      })
     }
   },
   components: { TeacherInfoComponent, TeacherAssessComponent }
@@ -78,6 +110,13 @@ export default {
       padding: Rem(8) 0 Rem(8) Rem(15);
       font-size: Rem(13);
       color: #888;
+    }
+    .teach-title {
+      font-size: Rem(13);
+      color: #2b2b2b;
+    }
+    .teach-case-content {
+      border-bottom: 1px solid #d8dded;
     }
   }
   .assess-box {

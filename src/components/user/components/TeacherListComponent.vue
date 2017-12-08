@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="teacher-list">
     <template v-for="item in teacherList">
-      <router-link :to="{ name: 'TeacherDetail', params: {} }">
+      <router-link :to="{ name: 'TeacherDetail', params: { id: item.id } }">
         <div class="teacher-item">
           <img :src="item.image" alt="">
           <div class="teacher-info">
@@ -21,9 +21,9 @@
               <span>物理系</span>
             </p>
             <p class="accept">
-              <span>大学生</span>
-              <span>已认证</span>
-              <span>明星教师</span>
+              <template v-for="item in item.extend_tag">
+                <span>{{ item.label }}</span>
+              </template>
             </p>
           </div>
         </div>

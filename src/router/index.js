@@ -14,12 +14,12 @@ export default new Router({
       component: Main
     },
     {
-      path: '/teacher_detail',
+      path: '/teacher_detail/:id',
       name: 'TeacherDetail',
       component: TeacherDetail
     },
     {
-      path: '/teacher_list',
+      path: '/teacher_list/:id',
       name: 'TeacherList',
       component: TeacherList
     }

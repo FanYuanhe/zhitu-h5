@@ -1,18 +1,16 @@
 <template lang="html">
-  <div class="teachers-list">
+  <div class="teachers-list" v-if="mainInfo">
     <div class="search-bar">
-      <span>年级<i></i></span>
-      <span>学科<i></i></span>
-      <span>教师类型</span>
+      <span :class="moduleSelected=='grade'?'module-selected':'module'" data-module="grade" @click="searchModule($event)">年级<i></i></span>
+      <span :class="moduleSelected=='subject'?'module-selected':'module'" data-module="subject" @click="searchModule($event)">学科<i></i></span>
+      <span :class="moduleSelected=='type'?'module-selected':'module'" data-module="type" @click="searchModule($event)">教师类型</span>
     </div>
-    <TeacherListComponent></TeacherListComponent>
-    <div class="tips">
+    <TeacherListComponent :teacherList=teacherListData></TeacherListComponent>
+    <div class="tips" v-if="isShowTips" @click="hideTips">
       <div class="search-select-box">
-        <span class="select-item">数学</span>
-        <span class="select-item">数学</span>
-        <span class="select-item">数学</span>
-        <span class="select-item">数学</span>
-        <span class="select-item">数学</span>
+        <template v-for="item in moduleList">
+          <span class="select-item" @click.stop="clickModuleItem(item)" :class="item.selected?'module-item-selected':''">{{ item.label }}</span>
+        </template>
       </div>
     </div>
   </div>
@@ -20,11 +18,115 @@
 
 <script>
 import TeacherListComponent from './components/TeacherListComponent.vue'
+import { Indicator, Toast } from 'mint-ui'
 export default {
   name: 'TeacherList',
   data () {
     return {
-
+      moduleList: [],
+      moduleSelected: null,
+      isClickedModuleItem: false,
+      mainInfo: {},
+      condition: '',
+      teacherListData: [],
+      pageOffset: 0,
+      isShowTips: false,
+      searchSubject: null,
+      searchType: null,
+      searchGrade: null
+    }
+  },
+  mounted () {
+    this.getTeacherList()
+  },
+  methods: {
+    getTeacherList () {
+      var that = this;
+      that.axios({
+        url: `http://api.zhituteam.com/api/teacher/lists`,
+        method: 'get',
+        params: {
+          grade: that.searchGrade,
+          type: that.searchType,
+          subject: that.$router.history.current.params.id,
+          offset: that.pageOffset,
+          limit: 20
+        }
+      }).then((res) => {
+        const dataRes = res.data;
+        if (dataRes.message === 'success') {
+          dataRes.data.condition.grade.forEach((item) => {
+            item.type = 'grade';
+            item.selected = false;
+          });
+          dataRes.data.condition.subject.forEach((item) => {
+            item.type = 'subject';
+            item.selected = false;
+          })
+          dataRes.data.condition.type.forEach((item) => {
+            item.type = 'type';
+            item.selected = false;
+          })
+          this.mainInfo = dataRes.data;
+          if (this.condition === '') {
+            this.condition = dataRes.data.condition;
+          }
+          this.teacherListData = this.teacherListData.concat(dataRes.data.teacher);
+          Indicator.close();
+        } else {
+          Toast({
+            message: dataRes.message,
+            position: 'middle',
+            duration: 2000
+          });
+        }
+      })
+    },
+    searchModule (e) {
+      const moduleSelected = e.target.getAttribute('data-module');
+      this.isShowTips = true;
+      this.moduleSelected = moduleSelected;
+      if (moduleSelected === 'grade') {
+        this.moduleList = this.condition.grade;
+      };
+      if (moduleSelected === 'type') {
+        this.moduleList = this.condition.type;
+      };
+      if (moduleSelected === 'subject') {
+        this.moduleList = this.condition.subject;
+      };
+    },
+    clickModuleItem (item) {
+      this.condition.grade.forEach((item) => {
+        item.selected = false;
+      });
+      this.condition.subject.forEach((item) => {
+        item.selected = false;
+      })
+      this.condition.type.forEach((item) => {
+        item.selected = false;
+      })
+      if (item.type === 'grade') {
+        this.searchGrade = item.id;
+        item.selected = true;
+      }
+      if (item.type === 'type') {
+        this.searchType = item.id;
+        item.selected = true;
+      }
+      if (item.type === 'subject') {
+        this.searchSubject = item.id;
+        item.selected = true;
+      }
+      this.teacherListData = [];
+      this.isClickedModuleItem = true;
+      this.isShowTips = false;
+      this.getTeacherList();
+    },
+    hideTips () {
+      this.isShowTips = false;
+      this.isClickedModuleItem = false;
+      this.moduleSelected = null;
     }
   },
   components: { TeacherListComponent }
@@ -61,7 +163,7 @@ export default {
           background: #dde2f0;
         }
       }
-      span:after{
+      .module:after{
         position:absolute;
         right: Rem(33);
         top: Rem(15);
@@ -106,4 +208,20 @@ export default {
       }
     }
   }
+  .module-selected, .module-item-selected {
+    color: #52c644 !important;
+  }
+  .module-selected:after{
+    position:absolute;
+    right: Rem(33);
+    top: Rem(15);
+    border-left:4px solid transparent;
+    border-right:4px solid transparent;
+    border-top:4px solid #52c644;
+    content:"";
+    display:block;
+    width:0;
+    height:0
+  }
+
 </style>
