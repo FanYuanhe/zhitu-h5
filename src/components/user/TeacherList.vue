@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="teachers-list" v-if="mainInfo" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
+  <div class="teachers-list" v-if="mainInfo" v-infinite-scroll="loadMore" infinite-scroll-disabled="isLoading" infinite-scroll-distance="20" infinite-scroll-immediate-check="false">
     <div class="search-bar">
       <span :class="moduleSelected=='grade'?'module-selected':'module'" data-module="grade" @click="searchModule($event)">年级<i></i></span>
       <span :class="moduleSelected=='subject'?'module-selected':'module'" data-module="subject" @click="searchModule($event)">学科<i></i></span>
@@ -33,7 +33,8 @@ export default {
       isShowTips: false,
       searchSubject: null,
       searchType: null,
-      searchGrade: null
+      searchGrade: null,
+      isLoading: false
     }
   },
   mounted () {
@@ -50,11 +51,19 @@ export default {
           type: that.searchType,
           subject: that.$router.history.current.params.id,
           offset: that.pageOffset,
-          limit: 20
+          limit: 6
         }
       }).then((res) => {
         const dataRes = res.data;
         if (dataRes.message === 'success') {
+          if (!dataRes.data.teacher.length || dataRes.data.teacher.length < 6) {
+            this.isLoading = true;
+            Toast({
+              message: '已经加载全部',
+              position: 'middle',
+              duration: 2000
+            });
+          }
           dataRes.data.condition.grade.forEach((item) => {
             item.type = 'grade';
             item.selected = false;
@@ -121,6 +130,7 @@ export default {
       this.teacherListData = [];
       this.isClickedModuleItem = true;
       this.isShowTips = false;
+      this.pageOffset = 0;
       this.getTeacherList();
     },
     hideTips () {
@@ -129,6 +139,7 @@ export default {
       this.moduleSelected = null;
     },
     loadMore () {
+      this.pageOffset += 6;
       Indicator.open({
         spinnerType: 'fading-circle'
       });
