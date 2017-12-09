@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Main from '@/components/Main'
-import TeacherList from '@/components/TeacherList'
+const Main = () => import('@/components/user/Main.vue')
+const TeacherDetail = () => import('@/components/user/TeacherDetail.vue')
+const TeacherList = () => import('@/components/user/TeacherList.vue')
 
 Vue.use(Router)
 
@@ -13,7 +14,12 @@ export default new Router({
       component: Main
     },
     {
-      path: '/teacher_list',
+      path: '/teacher_detail/:id',
+      name: 'TeacherDetail',
+      component: TeacherDetail
+    },
+    {
+      path: '/teacher_list/:id',
       name: 'TeacherList',
       component: TeacherList
     }
