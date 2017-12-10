@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import PublicJs from '../static/js/public'
+window.V = PublicJs
 export default {
   name: 'app'
 }
@@ -12,4 +14,9 @@ export default {
 
 <style lang="scss">
   @import 'static/css/reset';
+  html,body {
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5;
+  }
 </style>
