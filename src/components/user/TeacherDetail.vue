@@ -88,7 +88,7 @@ export default {
     collect () {
       if (this.mainInfo.teacher.is_collect === 0) {
         this.axios({
-          url: 'http://api.zhituteam.com/api/collect/add',
+          url: '/api/collect/add',
           methods: 'get',
           params: {
             tid: this.$router.history.current.params.id
@@ -106,7 +106,7 @@ export default {
         })
       } else if (this.mainInfo.teacher.is_collect === 1) {
         this.axios({
-          url: 'http://api.zhituteam.com/api/collect/del',
+          url: '/api/collect/del',
           methods: 'get',
           params: {
             tid: this.$router.history.current.params.id
@@ -127,7 +127,7 @@ export default {
     course () {
       if (this.mainInfo.teacher.is_select === 0) {
         this.axios({
-          url: 'http://api.zhituteam.com/api/coursetrial/add',
+          url: '/api/coursetrial/add',
           methods: 'get',
           params: {
             tid: this.$router.history.current.params.id
