@@ -86,26 +86,25 @@ export default {
       })
     },
     collect () {
-      console.log(this.mainInfo.teacher.is_collect);
       if (this.mainInfo.teacher.is_collect === 0) {
         this.axios({
-           url: 'http://api.zhituteam.com/api/collect/add',
-           methods: 'get',
-           params: {
-             tid: this.$router.history.current.params.id
-           }
+          url: 'http://api.zhituteam.com/api/collect/add',
+          methods: 'get',
+          params: {
+            tid: this.$router.history.current.params.id
+          }
         }).then((res) => {
-         const dataRes = res.data;
-         if (dataRes.error === 0) {
+          const dataRes = res.data;
+          if (dataRes.error === 0) {
             this.mainInfo.teacher.is_collect = 1;
             Toast({
               message: '收藏成功',
               position: 'middle',
               duration: 2000
             });
-         }
-       })
-     } else if (this.mainInfo.teacher.is_collect === 1) {
+          }
+        })
+      } else if (this.mainInfo.teacher.is_collect === 1) {
         this.axios({
           url: 'http://api.zhituteam.com/api/collect/del',
           methods: 'get',
@@ -126,7 +125,6 @@ export default {
       }
     },
     course () {
-      console.log(this.mainInfo.teacher.is_select);
       if (this.mainInfo.teacher.is_select === 0) {
         this.axios({
           url: 'http://api.zhituteam.com/api/coursetrial/add',
