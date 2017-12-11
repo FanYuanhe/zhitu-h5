@@ -38,8 +38,12 @@
       <hr>
     </div>
     <div class="order-btn">
-      <div class="btn collect"><span>收藏</span></div>
-      <div class="btn order-now">预约试讲</div>
+      <div class="btn collect" @click="collect"><span>
+        {{ mainInfo.teacher.is_collect == '1'? '已收藏':'收藏' }}
+      </span></div>
+      <div class="btn order-now" :style="mainInfo.teacher.is_select == '1'?'background:#666':''" @click="course">
+        {{ mainInfo.teacher.is_select == '1'? '已预约':'预约试讲' }}
+      </div>
     </div>
   </div>
 </template>
@@ -80,6 +84,68 @@ export default {
           });
         }
       })
+    },
+    collect () {
+      if (this.mainInfo.teacher.is_collect === 0) {
+        this.axios({
+          url: '/api/collect/add',
+          methods: 'get',
+          params: {
+            tid: this.$router.history.current.params.id
+          }
+        }).then((res) => {
+          const dataRes = res.data;
+          if (dataRes.error === 0) {
+            this.mainInfo.teacher.is_collect = 1;
+            Toast({
+              message: '收藏成功',
+              position: 'middle',
+              duration: 2000
+            });
+          }
+        })
+      } else if (this.mainInfo.teacher.is_collect === 1) {
+        this.axios({
+          url: '/api/collect/del',
+          methods: 'get',
+          params: {
+            tid: this.$router.history.current.params.id
+          }
+        }).then((res) => {
+          const dataRes = res.data;
+          if (dataRes.error === 0) {
+            this.mainInfo.teacher.is_collect = 0;
+            Toast({
+              message: '取消收藏',
+              position: 'middle',
+              duration: 2000
+            });
+          }
+        })
+      }
+    },
+    course () {
+      if (this.mainInfo.teacher.is_select === 0) {
+        this.axios({
+          url: '/api/coursetrial/add',
+          methods: 'get',
+          params: {
+            tid: this.$router.history.current.params.id
+          }
+        }).then((res) => {
+          const dataRes = res.data;
+          if (dataRes.error === 0) {
+            this.mainInfo.teacher.is_select = 1;
+            Toast({
+              message: '预约成功',
+              position: 'middle',
+              duration: 2000
+            });
+          }
+        })
+      } else {
+        return false;
+      }
     }
   },
   components: { TeacherInfoComponent, TeacherAssessComponent }
@@ -174,6 +240,10 @@ export default {
     .order-now {
       width: 85%;
       background: #2dc072;
+    }
+    .order-no{
+      width: 85%;
+      background: #666;
     }
   }
 </style>
