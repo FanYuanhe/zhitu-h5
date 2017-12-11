@@ -95,7 +95,7 @@ export default {
           }
         }).then((res) => {
           const dataRes = res.data;
-          if (dataRes.error === 0) {
+          if (dataRes.error_code === 0) {
             this.mainInfo.teacher.is_collect = 1;
             Toast({
               message: '收藏成功',
@@ -104,7 +104,7 @@ export default {
             });
           }
         })
-      } else if (this.mainInfo.teacher.is_collect === 1) {
+      } else {
         this.axios({
           url: '/api/collect/del',
           methods: 'get',
@@ -113,7 +113,7 @@ export default {
           }
         }).then((res) => {
           const dataRes = res.data;
-          if (dataRes.error === 0) {
+          if (dataRes.error_code === 0) {
             this.mainInfo.teacher.is_collect = 0;
             Toast({
               message: '取消收藏',
@@ -127,14 +127,14 @@ export default {
     course () {
       if (this.mainInfo.teacher.is_select === 0) {
         this.axios({
-          url: '/api/coursetrial/add',
+          url: 'http://api.zhituteam.com/api/coursetrial/add',
           methods: 'get',
           params: {
             tid: this.$router.history.current.params.id
           }
         }).then((res) => {
           const dataRes = res.data;
-          if (dataRes.error === 0) {
+          if (dataRes.error_code === 0) {
             this.mainInfo.teacher.is_select = 1;
             Toast({
               message: '预约成功',
@@ -143,8 +143,6 @@ export default {
             });
           }
         })
-      } else {
-        return false;
       }
     }
   },
