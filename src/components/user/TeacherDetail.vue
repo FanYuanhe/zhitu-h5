@@ -69,7 +69,7 @@ export default {
       })
       var that = this;
       that.axios({
-        url: `http://api.zhituteam.com/api/teacher/info/id/${that.$router.history.current.params.id}`,
+        url: `/api/teacher/info/id/${that.$router.history.current.params.id}`,
         method: 'get'
       }).then((res) => {
         const dataRes = res.data;

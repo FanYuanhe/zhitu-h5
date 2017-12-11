@@ -4,7 +4,7 @@
       <img src="static/img/logo.png" alt="">
       <div class="my">
         <img src="static/img/my.png" alt="">
-        <span>我的</span>
+        <span @click="goUserCenter">我的</span>
       </div>
     </div>
     <div class="swiper-container">
@@ -64,7 +64,7 @@ export default {
       })
       this.axios({
         method: 'get',
-        url: 'http://api.zhituteam.com/api/index'
+        url: '/api/index'
       })
       .then((res) => {
         const dataRes = res.data;
@@ -79,6 +79,14 @@ export default {
           });
         }
       })
+    },
+    goUserCenter () {
+      const ztData = localStorage.getItem('zt_data');
+      if (!ztData) {
+        location.href = '#/login';
+      } else {
+        location.href = '#/public_personal_center';
+      }
     }
   },
   components: { TeacherListComponent }

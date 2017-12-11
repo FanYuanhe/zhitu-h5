@@ -5,7 +5,7 @@
 - 预约接口
 
 **请求URL：** 
-- ` http://xx.com/api/course/add `
+- ` http://xx.com/api/coursetrial/add `
   
 **请求方式：**
 - GET
