@@ -44,7 +44,7 @@ export default {
     getTeacherList () {
       var that = this;
       that.axios({
-        url: `http://api.zhituteam.com/api/teacher/lists`,
+        url: `/api/teacher/lists`,
         method: 'get',
         params: {
           grade: that.searchGrade,
