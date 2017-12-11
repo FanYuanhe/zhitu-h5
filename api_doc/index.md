@@ -38,11 +38,36 @@
           "id" : 1,
           "name" : "",   
           "image" : "",   
-          "subject" : ["数学"],     
-          "grade" : ["初一","初二"],   
+          "subject" : [
+          	  {
+          	  	"id" :1,
+          	  	"lebel" : "数学",
+          	  	"sort"  : 0
+          	  }
+          ],     
+          "grade" : [
+          	  {
+          	  	"id" :1,
+          	  	"lebel" : "数学",
+          	  	"sort
+          ],   
+          "extend_tag" : [
+          	  {
+          	  	"id" :1,
+          	  	"lebel" : "已认证",
+          	  	"sort"  : 0
+          	  }，
+          	  {
+          	  	"id" :1,
+          	  	"lebel" : "大学生",
+          	  	"sort"  : 0
+          	  }
+          ],
           "school" : "",
           "source" : 1,   
-          "is_confirm" : ,   
+          "is_confirm" : 0,  
+          "is_star" : 0,  
+          "teach_time" : 10, 
           "teach_time" : 10,        
         }
       ],
@@ -58,11 +83,25 @@
 ```
 
  **返回参数说明** 
+ 
+ data
+
+|参数名|类型|说明|
+|:-----  |:-----|-----                           |
+|banner |array   |首焦轮播  |
+|teacher |array   |热推教师  |
+|subjects |array   |学科  |
+
+ 
+ teacher
 
 |参数名|类型|说明|
 |:-----  |:-----|-----                           |
 |source |int   |来源类型 1:大学生 2:编制内教师 3:职业教师  |
-
+|is_confirm |int   |是否认证 1:已认证 0:未认证 |
+|is_star |int   |明星教师  1：明星教师 0：普通教师 |
+|teach_year |int   |教龄|
+|teach_time |int   |授课时长 |
 
 
 

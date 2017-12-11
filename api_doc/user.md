@@ -66,7 +66,16 @@
     "error_code": 0,
     "message": "success",
     "data": {
-      "token": 'string'
+      "token": 'string',
+      "user" : {
+      	 "id" : 1,
+		 "phone" : "",
+		 "name" : "",
+		 "image" : "",
+		 "is_teacher" : 1,
+		 "teacher_id" : 1
+      }，
+      "setpass" : 0
     }
   }
 ```
@@ -76,6 +85,8 @@
 |参数名|类型|说明|
 |:-----|:-----|-----|
 |token| string | 用户登录token|
+|user| obj | 用户基本信息|
+|setpass| int | 首次登录设置密码 0不设置 1设置|
 
 ***
 

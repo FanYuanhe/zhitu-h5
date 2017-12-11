@@ -5,7 +5,7 @@
 - 教师筛选列表
 
 **请求URL：**
-- ` http://xx.com/api/teacher/s `
+- ` http://xx.com/api/teacher/lists `
 
 **请求方式：**
 - GET
@@ -19,6 +19,8 @@
 |subject     |否  |string | 科目    |
 |grade     |否  |string | 年纪    |
 |type     |否  |string | 类型    |
+|offset |是  |string | 偏移量 |
+|limit |是  |string | 每页数量   |
 
  **返回示例**
 
@@ -32,11 +34,37 @@
           "id" : 1,
           "name" : "",   
           "image" : "",   
-          "subject" : ["数学"],     
-          "grade" : ["初一","初二"],   
+          "subject" : [
+          	  {
+          	  	"id" :1,
+          	  	"lebel" : "数学",
+          	  	"sort"  : 0
+          	  }
+          ],     
+          "grade" : [
+          	  {
+          	  	"id" :1,
+          	  	"lebel" : "数学",
+          	  	"sort
+          	  }
+          ],   
+          "extend_tag" : [
+          	  {
+          	  	"id" :1,
+          	  	"lebel" : "已认证",
+          	  	"sort"  : 0
+          	  }，
+          	  {
+          	  	"id" :1,
+          	  	"lebel" : "大学生",
+          	  	"sort"  : 0
+          	  }
+          ],
           "school" : "",
           "source" : 1,   
-          "is_confirm" : ,   
+          "is_confirm" : 0,  
+          "is_star" : 0,  
+          "teach_time" : 10,
           "teach_time" : 10,        
         }
       ],
