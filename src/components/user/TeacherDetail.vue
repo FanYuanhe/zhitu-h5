@@ -41,7 +41,7 @@
       <div class="btn collect" @click="collect"><span>
         {{ mainInfo.teacher.is_collect == '1'? '已收藏':'收藏' }}
       </span></div>
-      <div class="btn order-now" @click="course">
+      <div class="btn order-now" :style="mainInfo.teacher.is_select == '1'?'background:#666':''" @click="course">
         {{ mainInfo.teacher.is_select == '1'? '已预约':'预约试讲' }}
       </div>
     </div>
@@ -86,25 +86,26 @@ export default {
       })
     },
     collect () {
-      if (this.mainInfo.teacher.is_collect === '0') {
+      console.log(this.mainInfo.teacher.is_collect);
+      if (this.mainInfo.teacher.is_collect === 0) {
         this.axios({
-          url: 'http://api.zhituteam.com/api/collect/add',
-          methods: 'get',
-          params: {
-            tid: this.$router.history.current.params.id
-          }
+           url: 'http://api.zhituteam.com/api/collect/add',
+           methods: 'get',
+           params: {
+             tid: this.$router.history.current.params.id
+           }
         }).then((res) => {
-          const dataRes = res.data;
-          if (dataRes.error === 0) {
+         const dataRes = res.data;
+         if (dataRes.error === 0) {
             this.mainInfo.teacher.is_collect = 1;
             Toast({
               message: '收藏成功',
               position: 'middle',
               duration: 2000
             });
-          }
-        })
-      } else if (this.mainInfo.teacher.is_collect === '1') {
+         }
+       })
+     } else if (this.mainInfo.teacher.is_collect === 1) {
         this.axios({
           url: 'http://api.zhituteam.com/api/collect/del',
           methods: 'get',
@@ -113,7 +114,7 @@ export default {
           }
         }).then((res) => {
           const dataRes = res.data;
-          if (dataRes.message === 'success') {
+          if (dataRes.error === 0) {
             this.mainInfo.teacher.is_collect = 0;
             Toast({
               message: '取消收藏',
@@ -125,7 +126,8 @@ export default {
       }
     },
     course () {
-      if (this.mainInfo.teacher.is_select === '0') {
+      console.log(this.mainInfo.teacher.is_select);
+      if (this.mainInfo.teacher.is_select === 0) {
         this.axios({
           url: 'http://api.zhituteam.com/api/coursetrial/add',
           methods: 'get',
