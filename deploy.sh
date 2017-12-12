@@ -21,4 +21,4 @@ ssh fengtianhe@120.27.127.94 "rm -rf /home/web/zhituteam/template"
 
 scp -r ./dist fengtianhe@120.27.127.94:/home/web/zhituteam/template
 
-git pop
+git stash pop
