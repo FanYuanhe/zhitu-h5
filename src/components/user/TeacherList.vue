@@ -126,12 +126,12 @@ export default {
       }
       if (item.type === 'type') {
         this.searchType = item.id;
-        this.subjectText = item.label;
+        this.typeText = item.label;
         item.selected = true;
       }
       if (item.type === 'subject') {
         this.searchSubject = item.id;
-        this.typeText = item.label;
+        this.subjectText = item.label;
         item.selected = true;
       }
       this.teacherListData = [];
