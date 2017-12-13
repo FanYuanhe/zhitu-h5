@@ -55,7 +55,12 @@ export default {
       observer: true,
       observeParents: true
     });
-    this.getMainInfo();
+    const mainInfo = JSON.parse(localStorage.getItem('mainInfo'));
+    if (mainInfo && mainInfo !== '') {
+      this.mainInfo = mainInfo;
+    } else {
+      this.getMainInfo();
+    }
   },
   methods: {
     getMainInfo () {
@@ -70,6 +75,7 @@ export default {
         const dataRes = res.data;
         if (dataRes.message === 'success') {
           this.mainInfo = dataRes.data;
+          localStorage.setItem('mainInfo', JSON.stringify(this.mainInfo));
           Indicator.close();
         } else {
           Toast({
