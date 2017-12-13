@@ -25,7 +25,7 @@ export default {
   data () {
     return {
       moduleList: [],
-      moduleSelected: localStorage.getItem('moduleSelected') !== '' ? localStorage.getItem('moduleSelected') : localStorage.getItem('sname'),
+      moduleSelected: localStorage.getItem('moduleSelected'),
       isClickedModuleItem: false,
       mainInfo: {},
       condition: '',
@@ -156,6 +156,7 @@ export default {
         item.selected = true;
       }
       if (item.type === 'subject') {
+        /* 清空首页进列表页所带的标志 */
         localStorage.setItem('sname', '');
         this.searchSubject = item.id;
         this.subjectText = item.label;
