@@ -1,9 +1,9 @@
 <template lang="html">
   <div class="teachers-list" v-if="mainInfo" v-infinite-scroll="loadMore" infinite-scroll-disabled="isLoading" infinite-scroll-distance="20" infinite-scroll-immediate-check="false">
     <div class="search-bar">
-      <span :class="moduleSelected=='grade'?'module-selected':'module'" data-module="grade" @click="searchModule($event)">年级<i></i></span>
-      <span :class="moduleSelected=='subject'?'module-selected':'module'" data-module="subject" @click="searchModule($event)">学科<i></i></span>
-      <span :class="moduleSelected=='type'?'module-selected':'module'" data-module="type" @click="searchModule($event)">教师类型</span>
+      <span :class="moduleSelected=='grade'?'module-selected':'module'" data-module="grade" @click="searchModule($event)">{{ gradeText }}<i></i></span>
+      <span :class="moduleSelected=='subject'?'module-selected':'module'" data-module="subject" @click="searchModule($event)">{{ subjectText }}<i></i></span>
+      <span :class="moduleSelected=='type'?'module-selected':'module'" data-module="type" @click="searchModule($event)">{{ typeText }}</span>
     </div>
     <TeacherListComponent :teacherList=teacherListData></TeacherListComponent>
     <div class="tips" v-if="isShowTips" @click="hideTips">
@@ -31,10 +31,13 @@ export default {
       teacherListData: [],
       pageOffset: 0,
       isShowTips: false,
-      searchSubject: null,
+      searchSubject: this.$router.history.current.params.id,
       searchType: null,
       searchGrade: null,
-      isLoading: false
+      isLoading: false,
+      gradeText: '年级',
+      subjectText: '学科',
+      typeText: '教师类型'
     }
   },
   mounted () {
@@ -49,7 +52,7 @@ export default {
         params: {
           grade: that.searchGrade,
           type: that.searchType,
-          subject: that.$router.history.current.params.id,
+          subject: that.searchSubject,
           offset: that.pageOffset,
           limit: 6
         }
@@ -106,6 +109,7 @@ export default {
       };
     },
     clickModuleItem (item) {
+      console.log(item)
       this.condition.grade.forEach((item) => {
         item.selected = false;
       });
@@ -117,14 +121,17 @@ export default {
       })
       if (item.type === 'grade') {
         this.searchGrade = item.id;
+        this.gradeText = item.label;
         item.selected = true;
       }
       if (item.type === 'type') {
         this.searchType = item.id;
+        this.subjectText = item.label;
         item.selected = true;
       }
       if (item.type === 'subject') {
         this.searchSubject = item.id;
+        this.typeText = item.label;
         item.selected = true;
       }
       this.teacherListData = [];

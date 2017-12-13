@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import publicFunc from '../../static/js/public'
 import { Toast } from 'mint-ui'
 export default {
   name: 'FastLogin',
@@ -38,7 +39,9 @@ export default {
       code: '',
       password: '',
       timer: 60,
-      token: ''
+      token: '',
+      id: publicFunc.getQueryStr('id'),
+      from: publicFunc.getQueryStr('from')
     }
   },
   mounted () {
@@ -118,7 +121,11 @@ export default {
             position: 'middle',
             duration: 2000
           });
-          location.href = '#/public_personal_center';
+          if (this.id !== '' && this.from !== '') {
+            location.href = `#/teacher_detail/${that.id}`;
+          } else {
+            location.href = '#/public_personal_center'
+          }
         } else {
           Toast({
             message: res.data.message,
@@ -170,7 +177,11 @@ export default {
           that.isShowLoginbox = false;
           that.token = res.data.data.token;
           if (that.isShowSetPassword === 0) {
-            location.href = '#/public_personal_center';
+            if (this.id !== '' && this.from !== '') {
+              location.href = `#/teacher_detail/${that.id}`;
+            } else {
+              location.href = '#/public_personal_center'
+            }
           }
         } else {
           Toast({

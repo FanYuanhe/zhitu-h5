@@ -52,6 +52,7 @@
 import TeacherInfoComponent from './components/TeacherInfoComponent.vue'
 import TeacherAssessComponent from './components/TeacherAssessComponent.vue'
 import { Indicator, Toast } from 'mint-ui'
+let localData = localStorage.getItem('zt_data');
 export default {
   name: 'TeacherDetail',
   data () {
@@ -60,10 +61,10 @@ export default {
     }
   },
   mounted () {
-    this.getDoctorDetail();
+    this.getTeacherDetail();
   },
   methods: {
-    getDoctorDetail () {
+    getTeacherDetail () {
       Indicator.open({
         spinnerType: 'fading-circle'
       })
@@ -86,63 +87,71 @@ export default {
       })
     },
     collect () {
-      if (this.mainInfo.teacher.is_collect === 0) {
-        this.axios({
-          url: '/api/collect/add',
-          methods: 'get',
-          params: {
-            tid: this.$router.history.current.params.id
-          }
-        }).then((res) => {
-          const dataRes = res.data;
-          if (dataRes.error_code === 0) {
-            this.mainInfo.teacher.is_collect = 1;
-            Toast({
-              message: '收藏成功',
-              position: 'middle',
-              duration: 2000
-            });
-          }
-        })
+      if (localData !== '' && localData) {
+        if (this.mainInfo.teacher.is_collect === 0) {
+          this.axios({
+            url: '/api/collect/add',
+            methods: 'get',
+            params: {
+              tid: this.$router.history.current.params.id
+            }
+          }).then((res) => {
+            const dataRes = res.data;
+            if (dataRes.error_code === 0) {
+              this.mainInfo.teacher.is_collect = 1;
+              Toast({
+                message: '收藏成功',
+                position: 'middle',
+                duration: 2000
+              });
+            }
+          })
+        } else {
+          this.axios({
+            url: '/api/collect/del',
+            methods: 'get',
+            params: {
+              tid: this.$router.history.current.params.id
+            }
+          }).then((res) => {
+            const dataRes = res.data;
+            if (dataRes.error_code === 0) {
+              this.mainInfo.teacher.is_collect = 0;
+              Toast({
+                message: '取消收藏',
+                position: 'middle',
+                duration: 2000
+              });
+            }
+          })
+        }
       } else {
-        this.axios({
-          url: '/api/collect/del',
-          methods: 'get',
-          params: {
-            tid: this.$router.history.current.params.id
-          }
-        }).then((res) => {
-          const dataRes = res.data;
-          if (dataRes.error_code === 0) {
-            this.mainInfo.teacher.is_collect = 0;
-            Toast({
-              message: '取消收藏',
-              position: 'middle',
-              duration: 2000
-            });
-          }
-        })
+        location.href = `#/login?from=0&id=${this.$router.history.current.params.id}`;
       }
     },
     course () {
-      if (this.mainInfo.teacher.is_select === 0) {
-        this.axios({
-          url: 'http://api.zhituteam.com/api/coursetrial/add',
-          methods: 'get',
-          params: {
-            tid: this.$router.history.current.params.id
-          }
-        }).then((res) => {
-          const dataRes = res.data;
-          if (dataRes.error_code === 0) {
-            this.mainInfo.teacher.is_select = 1;
-            Toast({
-              message: '预约成功',
-              position: 'middle',
-              duration: 2000
-            });
-          }
-        })
+      if (localData !== '' && localData) {
+        if (this.mainInfo.teacher.is_select === 0) {
+          this.axios({
+            url: 'http://api.zhituteam.com/api/coursetrial/add',
+            methods: 'get',
+            params: {
+              tid: this.$router.history.current.params.id
+            }
+          }).then((res) => {
+            const dataRes = res.data;
+            if (dataRes.error_code === 0) {
+              this.mainInfo.teacher.is_select = 1;
+              Toast({
+                message: '预约成功',
+                position: 'middle',
+                duration: 2000
+              });
+            }
+          })
+        }
+      } else {
+        location.href = `#/login?from=0&id=${this.$router.history.current.params.id}`;
       }
     }
   },

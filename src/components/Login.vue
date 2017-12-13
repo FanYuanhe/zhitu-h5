@@ -5,9 +5,7 @@
     <button @click="loginFunc" type="button" name="button">登陆</button>
     <p class="info">登录即代表同意《知途家教》相关规定</p>
     <p class="login-box">
-      <router-link :to="{ name: 'FastLogin', params: {} }">
-        <span>没有账号？快捷登录</span>
-      </router-link>
+      <span @click="goLogin">没有账号？快捷登录</span>
       <router-link :to="{ name: '', params: {} }">
         <span class="forget-pass">忘记密码</span>
       </router-link>
@@ -16,19 +14,29 @@
 </template>
 
 <script>
+import publicFunc from '../../static/js/public'
 import { Toast } from 'mint-ui'
 export default {
   name: 'Login',
   data () {
     return {
       phone: '',
-      password: ''
+      password: '',
+      id: publicFunc.getQueryStr('id'),
+      from: publicFunc.getQueryStr('from')
     }
   },
   mounted () {
 
   },
   methods: {
+    goLogin () {
+      if (this.id !== '' && this.from !== '') {
+        location.href = `#/fastlogin?id=${this.id}&from=${this.from}`;
+      } else {
+        location.href = '#/fastlogin';
+      }
+    },
     loginFunc () {
       const that = this;
       console.log(that.phone);
@@ -63,7 +71,11 @@ export default {
             duration: 2000
           });
           localStorage.setItem('zt_data', JSON.stringify(res.data.data));
-          location.href = '#/public_personal_center'
+          if (this.id !== '' && this.from !== '') {
+            location.href = `#/teacher_detail/${that.id}`;
+          } else {
+            location.href = '#/public_personal_center'
+          }
         } else {
           Toast({
             message: res.data.message,
