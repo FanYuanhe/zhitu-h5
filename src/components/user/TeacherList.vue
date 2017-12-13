@@ -41,7 +41,12 @@ export default {
     }
   },
   mounted () {
-    this.getTeacherList()
+    const teacherListData = JSON.parse(localStorage.getItem('teacherListData'));
+    if (teacherListData && teacherListData !== '') {
+      this.teacherListData = teacherListData;
+    } else {
+      this.getTeacherList()
+    }
   },
   methods: {
     getTeacherList () {
@@ -84,6 +89,7 @@ export default {
             this.condition = dataRes.data.condition;
           }
           this.teacherListData = this.teacherListData.concat(dataRes.data.teacher);
+          localStorage.setItem('teacherListData', JSON.stringify(this.teacherListData))
           Indicator.close();
         } else {
           Toast({
