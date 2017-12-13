@@ -18,7 +18,7 @@
     <div class="subject-box">
       <ul class="clearfix">
         <template v-for="item in mainInfo.subjects">
-          <router-link :to="{ name: 'TeacherList', params:{ id: item.id }}">
+          <router-link :to="{ name: 'TeacherList', params:{ id: item.id, sname: item.name }}">
             <li>
               <img :src="item.icon" alt="">
               <p>{{ item.name }}</p>

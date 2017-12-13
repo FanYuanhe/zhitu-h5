@@ -24,7 +24,7 @@ export default {
   data () {
     return {
       moduleList: [],
-      moduleSelected: null,
+      moduleSelected: this.$router.history.current.params.sname ? 'subject' : null,
       isClickedModuleItem: false,
       mainInfo: {},
       condition: '',
@@ -36,14 +36,18 @@ export default {
       searchGrade: null,
       isLoading: false,
       gradeText: '年级',
-      subjectText: '学科',
+      subjectText: this.$router.history.current.params.sname ? this.$router.history.current.params.sname : '学科',
       typeText: '教师类型'
     }
   },
   mounted () {
+    const teacherListDataIcon = localStorage.getItem('teacherListDataIcon');
     const teacherListData = JSON.parse(localStorage.getItem('teacherListData'));
-    if (teacherListData && teacherListData !== '') {
+    const condition = JSON.parse(localStorage.getItem('condition'));
+    /* 从缓存中获取筛选项，缓存数据标志，数据列表进行判断 */
+    if (teacherListData && teacherListData.length > 0 && teacherListDataIcon === this.$router.history.current.params.sname) {
       this.teacherListData = teacherListData;
+      this.condition = condition;
     } else {
       this.getTeacherList()
     }
@@ -72,13 +76,19 @@ export default {
               duration: 2000
             });
           }
+          /* 重置选项，增加selected属性 */
           dataRes.data.condition.grade.forEach((item) => {
             item.type = 'grade';
             item.selected = false;
           });
           dataRes.data.condition.subject.forEach((item) => {
             item.type = 'subject';
-            item.selected = false;
+            /* 给定默认选中状态 */
+            if (item.label === this.$router.history.current.params.sname) {
+              item.selected = true;
+            } else {
+              item.selected = false;
+            }
           })
           dataRes.data.condition.type.forEach((item) => {
             item.type = 'type';
@@ -86,10 +96,15 @@ export default {
           })
           this.mainInfo = dataRes.data;
           if (this.condition === '') {
+            /* 缓存筛选项 */
             this.condition = dataRes.data.condition;
+            localStorage.setItem('condition', JSON.stringify(this.condition))
           }
           this.teacherListData = this.teacherListData.concat(dataRes.data.teacher);
-          localStorage.setItem('teacherListData', JSON.stringify(this.teacherListData))
+          /* 缓存教师列表 */
+          localStorage.setItem('teacherListData', JSON.stringify(this.teacherListData));
+          /* 给当前缓存的教师列表加个标志 */
+          localStorage.setItem('teacherListDataIcon', this.$router.history.current.params.sname);
           Indicator.close();
         } else {
           Toast({
@@ -103,7 +118,6 @@ export default {
     searchModule (e) {
       const moduleSelected = e.target.getAttribute('data-module');
       this.isShowTips = true;
-      this.moduleSelected = moduleSelected;
       if (moduleSelected === 'grade') {
         this.moduleList = this.condition.grade;
       };
@@ -115,7 +129,9 @@ export default {
       };
     },
     clickModuleItem (item) {
-      console.log(item)
+      /* 选中了哪个大的筛选项，给定选中样式 */
+      this.moduleSelected = item.type;
+      /* 重置每个小筛选项的样式 */
       this.condition.grade.forEach((item) => {
         item.selected = false;
       });
@@ -140,6 +156,7 @@ export default {
         this.subjectText = item.label;
         item.selected = true;
       }
+      /* 筛选开始清空原有数据列表 */
       this.teacherListData = [];
       this.isClickedModuleItem = true;
       this.isShowTips = false;
@@ -148,8 +165,6 @@ export default {
     },
     hideTips () {
       this.isShowTips = false;
-      this.isClickedModuleItem = false;
-      this.moduleSelected = null;
     },
     loadMore () {
       this.pageOffset += 6;
