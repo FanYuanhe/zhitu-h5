@@ -18,12 +18,10 @@
     <div class="subject-box">
       <ul class="clearfix">
         <template v-for="item in mainInfo.subjects">
-          <router-link :to="{ name: 'TeacherList', params:{ id: item.id, sname: item.name }}">
-            <li>
-              <img :src="item.icon" alt="">
-              <p>{{ item.name }}</p>
-            </li>
-          </router-link>
+          <li @click="goTeacherList(item)">
+            <img :src="item.icon" alt="">
+            <p>{{ item.name }}</p>
+          </li>
         </template>
       </ul>
     </div>
@@ -93,6 +91,14 @@ export default {
       } else {
         location.href = '#/public_personal_center';
       }
+    },
+    goTeacherList (item) {
+      location.href = `#/teacher_list?id=${item.id}&sname=${item.name}`
+      localStorage.setItem('sname', item.name);
+      localStorage.setItem('gradeText', '');
+      localStorage.setItem('typeText', '');
+      localStorage.setItem('subjectText', '');
+      localStorage.setItem('moduleSelected', 'subject')
     }
   },
   components: { TeacherListComponent }

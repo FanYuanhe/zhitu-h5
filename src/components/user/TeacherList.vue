@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import publicFunc from '../../../static/js/public'
 import TeacherListComponent from './components/TeacherListComponent.vue'
 import { Indicator, Toast } from 'mint-ui'
 export default {
@@ -24,20 +25,20 @@ export default {
   data () {
     return {
       moduleList: [],
-      moduleSelected: this.$router.history.current.params.sname ? 'subject' : null,
+      moduleSelected: localStorage.getItem('moduleSelected') !== '' ? localStorage.getItem('moduleSelected') : localStorage.getItem('sname'),
       isClickedModuleItem: false,
       mainInfo: {},
       condition: '',
       teacherListData: [],
       pageOffset: 0,
       isShowTips: false,
-      searchSubject: this.$router.history.current.params.id,
+      searchSubject: publicFunc.getQueryStr('id'),
       searchType: null,
       searchGrade: null,
       isLoading: false,
-      gradeText: '年级',
-      subjectText: this.$router.history.current.params.sname ? this.$router.history.current.params.sname : '学科',
-      typeText: '教师类型'
+      gradeText: localStorage.getItem('gradeText') !== '' ? localStorage.getItem('gradeText') : '年级',
+      subjectText: localStorage.getItem('sname') !== '' ? localStorage.getItem('sname') : localStorage.getItem('subjectText'),
+      typeText: localStorage.getItem('typeText') !== '' ? localStorage.getItem('typeText') : '教师类型'
     }
   },
   mounted () {
@@ -45,7 +46,7 @@ export default {
     const teacherListData = JSON.parse(localStorage.getItem('teacherListData'));
     const condition = JSON.parse(localStorage.getItem('condition'));
     /* 从缓存中获取筛选项，缓存数据标志，数据列表进行判断 */
-    if (teacherListData && teacherListData.length > 0 && teacherListDataIcon === this.$router.history.current.params.sname) {
+    if (teacherListData && teacherListData.length > 0 && teacherListDataIcon === publicFunc.getQueryStr('sname')) {
       this.teacherListData = teacherListData;
       this.condition = condition;
     } else {
@@ -84,7 +85,7 @@ export default {
           dataRes.data.condition.subject.forEach((item) => {
             item.type = 'subject';
             /* 给定默认选中状态 */
-            if (item.label === this.$router.history.current.params.sname) {
+            if (item.label === localStorage.getItem('sname')) {
               item.selected = true;
             } else {
               item.selected = false;
@@ -95,16 +96,16 @@ export default {
             item.selected = false;
           })
           this.mainInfo = dataRes.data;
+          /* 缓存筛选项 */
           if (this.condition === '') {
-            /* 缓存筛选项 */
             this.condition = dataRes.data.condition;
-            localStorage.setItem('condition', JSON.stringify(this.condition))
           }
+          localStorage.setItem('condition', JSON.stringify(this.condition))
           this.teacherListData = this.teacherListData.concat(dataRes.data.teacher);
           /* 缓存教师列表 */
           localStorage.setItem('teacherListData', JSON.stringify(this.teacherListData));
           /* 给当前缓存的教师列表加个标志 */
-          localStorage.setItem('teacherListDataIcon', this.$router.history.current.params.sname);
+          localStorage.setItem('teacherListDataIcon', publicFunc.getQueryStr('sname'));
           Indicator.close();
         } else {
           Toast({
@@ -131,6 +132,7 @@ export default {
     clickModuleItem (item) {
       /* 选中了哪个大的筛选项，给定选中样式 */
       this.moduleSelected = item.type;
+      localStorage.setItem('moduleSelected', item.type);
       /* 重置每个小筛选项的样式 */
       this.condition.grade.forEach((item) => {
         item.selected = false;
@@ -144,16 +146,20 @@ export default {
       if (item.type === 'grade') {
         this.searchGrade = item.id;
         this.gradeText = item.label;
+        localStorage.setItem('gradeText', item.label);
         item.selected = true;
       }
       if (item.type === 'type') {
         this.searchType = item.id;
         this.typeText = item.label;
+        localStorage.setItem('typeText', item.label);
         item.selected = true;
       }
       if (item.type === 'subject') {
+        localStorage.setItem('sname', '');
         this.searchSubject = item.id;
         this.subjectText = item.label;
+        localStorage.setItem('subjectText', item.label);
         item.selected = true;
       }
       /* 筛选开始清空原有数据列表 */

@@ -22,7 +22,7 @@ export default new Router({
       component: TeacherDetail
     },
     {
-      path: '/teacher_list/:id/:sname',
+      path: '/teacher_list',
       name: 'TeacherList',
       component: TeacherList
     },
