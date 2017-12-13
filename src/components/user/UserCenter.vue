@@ -70,14 +70,12 @@
   </div>
 </template>
 <script>
-import TeacherListComponent from './components/TeacherListComponent.vue'
 export default {
   name: 'UserCenter',
   data () {
     return {}
   },
   components: {
-    TeacherListComponent
   }
 }
 </script>

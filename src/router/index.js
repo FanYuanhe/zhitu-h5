@@ -6,7 +6,7 @@ const TeacherList = () => import('@/components/user/TeacherList.vue')
 const Login = () => import('@/components/Login.vue')
 const FastLogin = () => import('@/components/FastLogin.vue')
 const PublicPersonalCenter = () => import('@/components/PublicPersonalCenter.vue')
-const MyCollection = () => import('@/components/teacher/components/MyCollection.vue')
+const MyCollection = () => import('@/components/user/components/MyCollection.vue')
 Vue.use(Router)
 
 export default new Router({

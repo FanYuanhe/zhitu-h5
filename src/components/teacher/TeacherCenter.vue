@@ -70,7 +70,7 @@
 
 <script>
 export default {
-  name: 'UserCenter',
+  name: 'TeacherCenter',
   data () {
     return {}
   }
