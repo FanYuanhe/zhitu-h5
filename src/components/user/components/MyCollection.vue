@@ -6,7 +6,7 @@
 <script>
 import TeacherListComponent from './TeacherListComponent.vue'
 export default {
-  name:'TeacherCollect',
+  name: 'TeacherCollect',
   data () {
     return {
       mainInfo: [],

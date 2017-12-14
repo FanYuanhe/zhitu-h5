@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="user-center">
    <div class="teacher-item">
-    <img src="../../../static/img/userlogo.png" alt="">
+    <img :src="PublicCenter.image" alt="">
     <div class="teacher-info-text">
       <p class="detail">
         <span class="name">程可欣</span>
@@ -71,9 +71,8 @@
 <script>
 export default {
   name: 'TeacherCenter',
-  data () {
-    return {}
-  }
+  props: ['PublicCenter'],
+  data () { return {} }
 }
 </script>
 
@@ -81,7 +80,6 @@ export default {
   @import 'static/css/mixin';
   .a,.teacher-item {
     background: #fff;
-    height: Rem(110);
     padding-left: Rem(110);
     position: relative;
     margin-bottom: Rem(10);
@@ -93,7 +91,6 @@ export default {
       height: Rem(80);
     }
     .teacher-info-text {
-      height: Rem(110);
       font-size: 0;
     }
     .detail {

@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="personal-center">
-    <TeacherCenter v-if="ztData.role_type == '2'"></TeacherCenter>
-    <UserCenter v-if="ztData.role_type == '1'"></UserCenter>
+    <TeacherCenter v-if="ztData.role_type == '2'" :PublicCenter='mainInfo.teacher'></TeacherCenter>
+    <UserCenter v-if="ztData.role_type == '1'" :PublicCenter=mainInfo.user></UserCenter>
   </div>
 </template>
 
@@ -12,14 +12,25 @@ export default {
   name: 'PublicPersonalCenter',
   data () {
     return {
-      ztData: JSON.parse(localStorage.getItem('zt_data'))
+      ztData: JSON.parse(localStorage.getItem('zt_data')),
+      mainInfo: {}
     }
   },
   mounted () {
-    console.log(this.ztData);
+    this.getData();
   },
   methods: {
-
+    getData () {
+      this.axios({
+        methods: 'get',
+        url: 'api/user/info'
+      }).then((res) => {
+        const dataRes = res.data;
+        if (dataRes.error_code === 0) {
+          this.mainInfo = dataRes.data;
+        }
+      })
+    }
   },
   components: { TeacherCenter, UserCenter }
 }

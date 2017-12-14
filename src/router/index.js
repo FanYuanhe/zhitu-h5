@@ -7,6 +7,7 @@ const Login = () => import('@/components/Login.vue')
 const FastLogin = () => import('@/components/FastLogin.vue')
 const PublicPersonalCenter = () => import('@/components/PublicPersonalCenter.vue')
 const MyCollection = () => import('@/components/user/components/MyCollection.vue')
+const Lecture = () => import('@/components/user/components/Lecture.vue')
 Vue.use(Router)
 
 export default new Router({
@@ -45,6 +46,11 @@ export default new Router({
       path: '/my_collection',
       name: 'MyCollection',
       component: MyCollection
+    },
+    {
+      path: '/lecture',
+      name: 'Lecture',
+      component: Lecture
     }
   ]
 })

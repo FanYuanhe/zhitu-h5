@@ -5,7 +5,7 @@
           <img src="../../../static/img/userlogo.png" alt="a">
         </div>
         <div class="head_phone">
-          <span class="my_phone">17301308426</span>
+          <span class="my_phone">{{PublicCenter.phone}}</span>
         </div>
         <div class="head_edit">
           <span class="edit">编辑</span>
@@ -72,8 +72,10 @@
 <script>
 export default {
   name: 'UserCenter',
+  props: ['PublicCenter'],
   data () {
-    return {}
+    return {
+    }
   },
   components: {
   }
