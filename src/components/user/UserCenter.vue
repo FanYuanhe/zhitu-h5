@@ -1,6 +1,7 @@
 <template lang="html">
   <div class="user-center">
-    <div class="head">
+  <template>
+    <div class="head" v-if="PublicCenter">
         <div class="head_img">
           <img src="../../../static/img/userlogo.png" alt="a">
         </div>
@@ -22,7 +23,7 @@
               <span>></span>
             </div>
           </router-link>
-         <li>
+         <router-link to="lecture" tag="li">
             <div class="user_left">
             <img src="../../../static/img/accept.png" alt="a">
             <span>查看试讲</span>
@@ -30,7 +31,7 @@
             <div class="user_right">
               <span>></span>
             </div>
-          </li>
+          </router-link>
          <li>
             <div class="user_left">
             <img src="../../../static/img/accept.png" alt="a">
@@ -67,6 +68,7 @@
     <div class="remove">
       <span>退出登录</span>
     </div>
+  </template>
   </div>
 </template>
 <script>

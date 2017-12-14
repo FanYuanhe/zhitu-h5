@@ -1,70 +1,72 @@
 <template lang="html">
-  <div class="user-center">
-   <div class="teacher-item">
-    <img :src="PublicCenter.image" alt="">
-    <div class="teacher-info-text">
-      <p class="detail">
-        <span class="name">程可欣</span>
-        <span class="sub-tag">数</span>
-          <span class="grade-tag">小</span>
-          <span class="grade-tag">初</span>
-          <span class="grade-tag">高</span>
-        <span class="teach-times">编辑资料</span>
-      </p>
-      <p class="accept">
-          <span>专职教师</span>
-          <span>已认证</span>
-          <span>明星教师</span>
-      </p>
+  <div class="teacher-center">
+    <template v-if="PublicCenter">
+     <div class="teacher-item">
+      <img :src="PublicCenter.image" alt="">
+      <div class="teacher-info-text">
+        <p class="detail">
+          <span class="name">程可欣</span>
+          <span class="sub-tag">数</span>
+            <span class="grade-tag">小</span>
+            <span class="grade-tag">初</span>
+            <span class="grade-tag">高</span>
+          <span class="teach-times">编辑资料</span>
+        </p>
+        <p class="accept">
+            <span>专职教师</span>
+            <span>已认证</span>
+            <span>明星教师</span>
+        </p>
+      </div>
     </div>
-  </div>
-    <div class="user">
-      <ul>
+      <div class="user">
+        <ul>
+            <li>
+              <div class="user_left">
+              <img src="../../../static/img/accept.png" alt="a">
+              <span>我的课程</span>
+              </div>
+              <div class="user_right">
+                <span>></span>
+              </div>
+            </li>
+           <li>
+              <div class="user_left">
+              <img src="../../../static/img/accept.png" alt="a">
+              <span>我的试讲</span>
+              </div>
+              <div class="user_right">
+                <span>></span>
+              </div>
+            </li>
+            </ul>
+      </div>
+      <div class="detail">
+        <ul>
           <li>
-            <div class="user_left">
-            <img src="../../../static/img/accept.png" alt="a">
-            <span>我的课程</span>
-            </div>
-            <div class="user_right">
-              <span>></span>
-            </div>
-          </li>
-         <li>
-            <div class="user_left">
-            <img src="../../../static/img/accept.png" alt="a">
-            <span>我的试讲</span>
-            </div>
-            <div class="user_right">
-              <span>></span>
-            </div>
-          </li>
-          </ul>
-    </div>
-    <div class="detail">
-      <ul>
-        <li>
-            <div class="user_left">
-            <img src="../../../static/img/accept.png" alt="a">
-            <span>客服电话</span>
-            </div>
-            <div class="user_right">
-              <span>></span>
-            </div>
-          </li>
-        <li>
-            <div class="user_left">
-            <img src="../../../static/img/accept.png" alt="a">
-            <span>关于知途家教</span>
-            </div>
-            <div class="user_right">
-              <span>></span>
-            </div>
-          </li>
-      </ul>
-    </div>
-    <div class="remove">
-      <span>退出登录</span>
-    </div>
+              <div class="user_left">
+              <img src="../../../static/img/accept.png" alt="a">
+              <span>客服电话</span>
+              </div>
+              <div class="user_right">
+                <span>></span>
+              </div>
+            </li>
+          <li>
+              <div class="user_left">
+              <img src="../../../static/img/accept.png" alt="a">
+              <span>关于知途家教</span>
+              </div>
+              <div class="user_right">
+                <span>></span>
+              </div>
+            </li>
+        </ul>
+      </div>
+      <div class="remove">
+        <span>退出登录</span>
+      </div>
+    </template>
   </div>
 </template>
 
