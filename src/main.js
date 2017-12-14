@@ -24,7 +24,6 @@ axios.interceptors.response.use(function (response) {
   return Promise.reject(error);
 });
 const localData = localStorage.getItem('zt_data');
-
 if (localData !== '' && localData) {
   const ztData = JSON.parse(localData);
   axios.defaults.headers.common['access-token'] = ztData.token;

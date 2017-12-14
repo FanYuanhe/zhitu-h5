@@ -52,7 +52,6 @@
 import TeacherInfoComponent from './components/TeacherInfoComponent.vue'
 import TeacherAssessComponent from './components/TeacherAssessComponent.vue'
 import { Indicator, Toast } from 'mint-ui'
-let localData = localStorage.getItem('zt_data');
 export default {
   name: 'TeacherDetail',
   data () {
@@ -87,6 +86,7 @@ export default {
       })
     },
     collect () {
+      const localData = localStorage.getItem('zt_data');
       if (localData !== '' && localData) {
         if (this.mainInfo.teacher.is_collect === 0) {
           this.axios({
@@ -94,6 +94,9 @@ export default {
             methods: 'get',
             params: {
               tid: this.$router.history.current.params.id
+            },
+            headers: {
+              'access-token': JSON.parse(localData).token
             }
           }).then((res) => {
             const dataRes = res.data;
@@ -112,6 +115,9 @@ export default {
             methods: 'get',
             params: {
               tid: this.$router.history.current.params.id
+            },
+            headers: {
+              'access-token': JSON.parse(localData).token
             }
           }).then((res) => {
             const dataRes = res.data;
@@ -130,6 +136,7 @@ export default {
       }
     },
     course () {
+      const localData = localStorage.getItem('zt_data');
       if (localData !== '' && localData) {
         if (this.mainInfo.teacher.is_select === 0) {
           this.axios({
@@ -137,6 +144,9 @@ export default {
             methods: 'get',
             params: {
               tid: this.$router.history.current.params.id
+            },
+            headers: {
+              'access-token': JSON.parse(localData).token
             }
           }).then((res) => {
             const dataRes = res.data;
