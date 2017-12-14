@@ -73,6 +73,18 @@ export default {
   methods: {
     unfinished () {
       this.status = '1';
+      this.axios({
+        url: '/api/coursetrial/studentlists',
+        methods: 'get',
+        params: {
+          status: this.status
+        }
+      }).then((res) => {
+        const dataRes = res.data;
+        if (dataRes.error_code === 0) {
+          this.mainInfo = dataRes.data;
+        }
+      })
     },
     finish () {
       this.status = '2';
