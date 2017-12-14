@@ -4,9 +4,9 @@
     </div>
 </template>
 <script>
-import TeacherListComponent from './TeacherListComponent.vue'
+import TeacherListComponent from './components/TeacherListComponent.vue'
 export default {
-  name: 'TeacherCollect',
+  name: 'UserCollect',
   data () {
     return {
       mainInfo: [],

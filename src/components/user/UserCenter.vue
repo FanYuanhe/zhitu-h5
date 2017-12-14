@@ -1,12 +1,12 @@
 <template lang="html">
   <div class="user-center">
   <template>
-    <div class="head" v-if="PublicCenter">
+    <div class="head" v-if="centerInfo">
         <div class="head_img">
           <img src="../../../static/img/userlogo.png" alt="a">
         </div>
         <div class="head_phone">
-          <span class="my_phone">{{PublicCenter.phone}}</span>
+          <span class="my_phone">{{centerInfo.phone}}</span>
         </div>
         <div class="head_edit">
           <span class="edit">编辑</span>
@@ -14,55 +14,55 @@
     </div>
     <div class="user">
       <ul>
-          <router-link to="my_collection" tag="li">
-            <div class="user_left">
-            <img src="../../../static/img/accept.png" alt="a">
-            <span>我的收藏</span>
-            </div>
-            <div class="user_right">
-              <span>></span>
-            </div>
-          </router-link>
-         <router-link to="lecture" tag="li">
-            <div class="user_left">
+        <router-link :to="{ name: 'UserCollect', params: {} }" tag="li">
+          <div class="user_left">
+          <img src="../../../static/img/accept.png" alt="a">
+          <span>我的收藏</span>
+          </div>
+          <div class="user_right">
+            <span>></span>
+          </div>
+        </router-link>
+        <router-link :to="{ name: 'UserLecture', params: {} }" tag="li">
+          <div class="user_left">
             <img src="../../../static/img/accept.png" alt="a">
             <span>查看试讲</span>
-            </div>
-            <div class="user_right">
-              <span>></span>
-            </div>
-          </router-link>
-         <li>
-            <div class="user_left">
+          </div>
+          <div class="user_right">
+            <span>></span>
+          </div>
+        </router-link>
+       <li>
+          <div class="user_left">
             <img src="../../../static/img/accept.png" alt="a">
             <span>我的课程</span>
-            </div>
-            <div class="user_right">
-              <span>></span>
-            </div>
-          </li>
-          </ul>
+          </div>
+          <div class="user_right">
+            <span>></span>
+          </div>
+        </li>
+      </ul>
     </div>
     <div class="detail">
       <ul>
         <li>
-            <div class="user_left">
+          <div class="user_left">
             <img src="../../../static/img/accept.png" alt="a">
             <span>客服电话</span>
-            </div>
-            <div class="user_right">
-              <span>></span>
-            </div>
-          </li>
+          </div>
+          <div class="user_right">
+            <span>></span>
+          </div>
+        </li>
         <li>
-            <div class="user_left">
+          <div class="user_left">
             <img src="../../../static/img/accept.png" alt="a">
             <span>关于知途家教</span>
-            </div>
-            <div class="user_right">
-              <span>></span>
-            </div>
-          </li>
+          </div>
+          <div class="user_right">
+            <span>></span>
+          </div>
+        </li>
       </ul>
     </div>
     <div class="remove">
@@ -74,7 +74,7 @@
 <script>
 export default {
   name: 'UserCenter',
-  props: ['PublicCenter'],
+  props: ['centerInfo'],
   data () {
     return {
     }
@@ -117,7 +117,7 @@ export default {
       right: Rem(15);
       .edit{
         color:#999999;
-        font-size: Rem(16);
+        font-size: Rem(13);
         font-weight: 400;
       }
     }
@@ -152,6 +152,9 @@ export default {
         }
       }
       .user_right {
+        height: Rem(50);
+        line-height: Rem(50);
+        font-size: Rem(15);
         float: right;
         margin-right: Rem(15);
       }
@@ -187,6 +190,9 @@ export default {
           }
         }
         .user_right {
+          height: Rem(50);
+          line-height: Rem(50);
+          font-size: Rem(15);
           float: right;
           margin-right: Rem(15);
         }

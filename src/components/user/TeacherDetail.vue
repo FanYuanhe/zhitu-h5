@@ -102,6 +102,12 @@ export default {
               position: 'middle',
               duration: 2000
             });
+          } else {
+            Toast({
+              message: res.data.message,
+              position: 'middle',
+              duration: 2000
+            });
           }
         })
       } else {
@@ -117,6 +123,12 @@ export default {
             this.mainInfo.teacher.is_collect = 0;
             Toast({
               message: '取消收藏',
+              position: 'middle',
+              duration: 2000
+            });
+          } else {
+            Toast({
+              message: res.data.message,
               position: 'middle',
               duration: 2000
             });
@@ -138,6 +150,12 @@ export default {
             this.mainInfo.teacher.is_select = 1;
             Toast({
               message: '预约成功',
+              position: 'middle',
+              duration: 2000
+            });
+          } else {
+            Toast({
+              message: res.data.message,
               position: 'middle',
               duration: 2000
             });

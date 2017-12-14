@@ -1,8 +1,8 @@
 <template lang="html">
   <div class="teacher-center">
-    <template v-if="PublicCenter">
+    <template v-if="centerInfo">
      <div class="teacher-item">
-      <img :src="PublicCenter.image" alt="">
+      <img :src="centerInfo.image" alt="">
       <div class="teacher-info-text">
         <p class="detail">
           <span class="name">程可欣</span>
@@ -30,16 +30,18 @@
                 <span>></span>
               </div>
             </li>
-           <li>
-              <div class="user_left">
-              <img src="../../../static/img/accept.png" alt="a">
-              <span>我的试讲</span>
-              </div>
-              <div class="user_right">
-                <span>></span>
-              </div>
-            </li>
-            </ul>
+            <router-link :to="{ name: 'TeacherLecture', params: {} }">
+              <li>
+                 <div class="user_left">
+                 <img src="../../../static/img/accept.png" alt="a">
+                 <span>我的试讲</span>
+                 </div>
+                 <div class="user_right">
+                   <span>></span>
+                 </div>
+               </li>
+            </router-link>
+        </ul>
       </div>
       <div class="detail">
         <ul>
@@ -73,7 +75,7 @@
 <script>
 export default {
   name: 'TeacherCenter',
-  props: ['PublicCenter'],
+  props: ['centerInfo'],
   data () { return {} }
 }
 </script>
@@ -98,7 +100,7 @@ export default {
     .detail {
       width: 100%;
       display: inline-block;
-      margin-top: Rem(18);
+      margin-top: Rem(12);
       span {
         margin-left: Rem(4);
       }
@@ -147,7 +149,7 @@ export default {
     }
     .accept {
       position: absolute;
-      bottom: Rem(15);
+      bottom: Rem(20);
       span {
         font-size: Rem(13);
         color: #262323;
@@ -194,6 +196,9 @@ export default {
         }
       }
       .user_right {
+        height: Rem(50);
+        line-height: Rem(50);
+        font-size: Rem(14);
         float: right;
         margin-right: Rem(15);
       }
@@ -229,6 +234,9 @@ export default {
           }
         }
         .user_right {
+          height: Rem(50);
+          line-height: Rem(50);
+          font-size: Rem(14);
           float: right;
           margin-right: Rem(15);
         }

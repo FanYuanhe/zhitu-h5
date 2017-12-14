@@ -63,7 +63,9 @@ export default {
             duration: 2000
           });
           localStorage.setItem('zt_data', JSON.stringify(res.data.data));
-          location.href = '#/public_personal_center'
+          setTimeout(() => {
+            location.href = '#/public_personal_center'
+          }, 1000)
         } else {
           Toast({
             message: res.data.message,

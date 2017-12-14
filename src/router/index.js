@@ -6,8 +6,9 @@ const TeacherList = () => import('@/components/user/TeacherList.vue')
 const Login = () => import('@/components/Login.vue')
 const FastLogin = () => import('@/components/FastLogin.vue')
 const PublicPersonalCenter = () => import('@/components/PublicPersonalCenter.vue')
-const MyCollection = () => import('@/components/user/components/MyCollection.vue')
-const Lecture = () => import('@/components/user/components/Lecture.vue')
+const UserCollect = () => import('@/components/user/UserCollect.vue')
+const UserLecture = () => import('@/components/user/UserLecture.vue')
+const TeacherLecture = () => import('@/components/teacher/TeacherLecture.vue')
 Vue.use(Router)
 
 export default new Router({
@@ -43,14 +44,19 @@ export default new Router({
       component: PublicPersonalCenter
     },
     {
-      path: '/my_collection',
-      name: 'MyCollection',
-      component: MyCollection
+      path: '/user_collect',
+      name: 'UserCollect',
+      component: UserCollect
     },
     {
-      path: '/lecture',
-      name: 'Lecture',
-      component: Lecture
+      path: '/user_lecture',
+      name: 'UserLecture',
+      component: UserLecture
+    },
+    {
+      path: '/teacher_lecture',
+      name: 'TeacherLecture',
+      component: TeacherLecture
     }
   ]
 })
