@@ -15,14 +15,18 @@ axios.interceptors.response.use(function (response) {
 }, function (error) {
     // 对响应错误做点什么
   Indicator.close();
-  let errorMsg = error.response ? error.response.data.error_msg : error.message;
-  Toast({
-    message: errorMsg,
-    duration: 3000
-  })
-  console.log(error.config);
+  let errorMsg = error.response ? error.response.data.message : error.message;
+  if (error.response.data.error_code === 401) {
+    location.href = '#/login'
+  } else {
+    Toast({
+      message: errorMsg,
+      duration: 3000
+    })
+  }
   return Promise.reject(error);
 });
+
 const localData = localStorage.getItem('zt_data');
 if (localData !== '' && localData) {
   const ztData = JSON.parse(localData);
