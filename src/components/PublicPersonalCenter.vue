@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import axiosHeaders from '../../static/js/axiosHeaders';
 import TeacherCenter from './teacher/TeacherCenter.vue';
 import UserCenter from './user/UserCenter.vue'
 export default {
@@ -19,17 +20,14 @@ export default {
     }
   },
   mounted () {
-    console.log(this.ztData);
     this.getData();
   },
   methods: {
     getData () {
+      axiosHeaders.setHeaders();
       this.axios({
         methods: 'get',
-        url: 'api/user/info',
-        headers: {
-          'access-token': this.ztData.token
-        }
+        url: 'api/user/info'
       }).then((res) => {
         const dataRes = res.data;
         if (dataRes.error_code === 0) {

@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import axiosHeaders from '../../../static/js/axiosHeaders';
 import TeacherInfoComponent from './components/TeacherInfoComponent.vue'
 import TeacherAssessComponent from './components/TeacherAssessComponent.vue'
 import { Indicator, Toast } from 'mint-ui'
@@ -88,15 +89,13 @@ export default {
     collect () {
       const localData = localStorage.getItem('zt_data');
       if (localData !== '' && localData) {
+        axiosHeaders.setHeaders();
         if (this.mainInfo.teacher.is_collect === 0) {
           this.axios({
             url: '/api/collect/add',
             methods: 'get',
             params: {
               tid: this.$router.history.current.params.id
-            },
-            headers: {
-              'access-token': JSON.parse(localData).token
             }
           }).then((res) => {
             const dataRes = res.data;
@@ -110,14 +109,12 @@ export default {
             }
           })
         } else {
+          axiosHeaders.setHeaders();
           this.axios({
             url: '/api/collect/del',
             methods: 'get',
             params: {
               tid: this.$router.history.current.params.id
-            },
-            headers: {
-              'access-token': JSON.parse(localData).token
             }
           }).then((res) => {
             const dataRes = res.data;
@@ -139,14 +136,12 @@ export default {
       const localData = localStorage.getItem('zt_data');
       if (localData !== '' && localData) {
         if (this.mainInfo.teacher.is_select === 0) {
+          axiosHeaders.setHeaders();
           this.axios({
             url: 'http://api.zhituteam.com/api/coursetrial/add',
             methods: 'get',
             params: {
               tid: this.$router.history.current.params.id
-            },
-            headers: {
-              'access-token': JSON.parse(localData).token
             }
           }).then((res) => {
             const dataRes = res.data;
