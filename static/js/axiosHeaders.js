@@ -11,5 +11,5 @@ function setHeaders () {
 }
 
 export default {
-  setHeaders
-};
+  setHeaders: setHeaders
+}
