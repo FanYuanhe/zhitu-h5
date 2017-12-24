@@ -124,9 +124,13 @@ export default {
 <style lang="scss">
   @import 'static/css/mixin';
   .textarea {
-    width: Rem(200);
+    width: Rem(260);
     height: Rem(100);
     border: 1px solid #ddd;
+    font-size: Rem(14);
+  }
+  .mint-msgbox-btn {
+    font-size: Rem(14);
   }
 </style>
 <style scoped lang="scss">

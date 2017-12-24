@@ -93,6 +93,24 @@ export default {
   components: {}
 }
 </script>
+<style lang="scss">
+  @import 'static/css/mixin';
+  .mint-msgbox-content {
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+    min-height: 0;
+  }
+  .mint-msgbox-message {
+    color: #8e8d8d;
+    margin: 0;
+    text-align: left;
+    line-height: Rem(24);
+  }
+  .mint-msgbox-btn {
+    font-size: Rem(14);
+  }
+</style>
 <style scoped lang="scss">
   @import 'static/css/mixin';
   .course-item {
