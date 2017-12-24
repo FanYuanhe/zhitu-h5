@@ -10,7 +10,7 @@
         <template v-for="item in teacherDetail.grade">
           <span class="grade-tag">{{ item.label }}</span>
         </template>
-        <span class="teach-times">¥300/小时</span>
+        <span class="teach-times">{{ teacherDetail.price }}</span>
       </p>
       <p class="school">
         <span>九年教龄</span>

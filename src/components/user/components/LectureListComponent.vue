@@ -9,7 +9,7 @@
             <span class="status" v-if="item.status=='4'">查看教师详情</span>
           </router-link>
           <span v-if="item.status=='5'" class="status">已通过</span>
-          <span v-if="item.status=='6'" class="status">未通过</span>
+          <span v-if="item.status=='6'" class="status status-no">未通过</span>
         </p>
         <p><span class="name">试讲时间:</span><span>{{ item.start_time }}</span></p>
         <p><span class="name">试讲课程:</span><span>{{ item.course_info }}</span></p>
@@ -96,6 +96,9 @@ export default {
       .status {
         color: #2ea141;
         float: right;
+      }
+      .status-no {
+        color: #888;
       }
     }
     .btn-box {

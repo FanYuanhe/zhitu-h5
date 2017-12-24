@@ -5,7 +5,7 @@
       <img :src="centerInfo.image" alt="">
       <div class="teacher-info-text">
         <p class="detail">
-          <span class="name">程可欣</span>
+          <span class="name">{{ centerInfo.name!=''?centerInfo.name:'知途教师' }}</span>
           <span class="sub-tag">数</span>
             <span class="grade-tag">小</span>
             <span class="grade-tag">初</span>

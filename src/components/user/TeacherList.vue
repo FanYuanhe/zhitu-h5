@@ -64,12 +64,12 @@ export default {
           type: that.searchType,
           subject: that.searchSubject,
           offset: that.pageOffset,
-          limit: 6
+          limit: 20
         }
       }).then((res) => {
         let dataRes = res.data;
         if (dataRes.message === 'success') {
-          if (!dataRes.data.teacher.length || dataRes.data.teacher.length < 6) {
+          if (!dataRes.data.teacher.length || dataRes.data.teacher.length < 20) {
             this.isLoading = true;
             Toast({
               message: '已经加载全部',
@@ -174,7 +174,7 @@ export default {
       this.isShowTips = false;
     },
     loadMore () {
-      this.pageOffset += 6;
+      this.pageOffset += 20;
       Indicator.open({
         spinnerType: 'fading-circle'
       });
