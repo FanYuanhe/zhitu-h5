@@ -42,9 +42,9 @@ export default {
     }
   },
   mounted () {
-    const teacherListDataIcon = localStorage.getItem('teacherListDataIcon');
-    const teacherListData = JSON.parse(localStorage.getItem('teacherListData'));
-    const condition = JSON.parse(localStorage.getItem('condition'));
+    let teacherListDataIcon = localStorage.getItem('teacherListDataIcon');
+    let teacherListData = JSON.parse(localStorage.getItem('teacherListData'));
+    let condition = JSON.parse(localStorage.getItem('condition'));
     /* 从缓存中获取筛选项，缓存数据标志，数据列表进行判断 */
     if (teacherListData && teacherListData.length > 0 && teacherListDataIcon === publicFunc.getQueryStr('sname')) {
       this.teacherListData = teacherListData;
@@ -67,7 +67,7 @@ export default {
           limit: 6
         }
       }).then((res) => {
-        const dataRes = res.data;
+        let dataRes = res.data;
         if (dataRes.message === 'success') {
           if (!dataRes.data.teacher.length || dataRes.data.teacher.length < 6) {
             this.isLoading = true;
@@ -117,7 +117,7 @@ export default {
       })
     },
     searchModule (e) {
-      const moduleSelected = e.target.getAttribute('data-module');
+      let moduleSelected = e.target.getAttribute('data-module');
       this.isShowTips = true;
       if (moduleSelected === 'grade') {
         this.moduleList = this.condition.grade;

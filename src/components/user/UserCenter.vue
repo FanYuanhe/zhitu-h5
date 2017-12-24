@@ -32,7 +32,7 @@
             <span>></span>
           </div>
         </router-link>
-       <li>
+        <router-link :to="{ name: 'UserCourse', params: {} }" tag="li">
           <div class="user_left">
             <img src="../../../static/img/accept.png" alt="a">
             <span>我的课程</span>
@@ -40,7 +40,7 @@
           <div class="user_right">
             <span>></span>
           </div>
-        </li>
+        </router-link>
       </ul>
     </div>
     <div class="detail">
@@ -65,9 +65,7 @@
         </li>
       </ul>
     </div>
-    <div class="remove">
-      <span>退出登录</span>
-    </div>
+    <div class="remove" @click="signOut">退出登录</div>
   </template>
   </div>
 </template>
@@ -77,6 +75,12 @@ export default {
   props: ['centerInfo'],
   data () {
     return {
+    }
+  },
+  methods: {
+    signOut () {
+      localStorage.clear();
+      location.href = '#/';
     }
   },
   components: {
@@ -200,15 +204,12 @@ export default {
     }
   .remove{
     height: Rem(50);
+    line-height: Rem(50);
+    text-align: center;
     width: 100%;
     background: #fff;
     margin-top: Rem(11);
-    span{
-      padding: Rem(0) Rem(150);
-      color: red;
-      font-size: Rem(16);
-      vertical-align: middle;
-    }
-
+    color: red;
+    font-size: Rem(16);
   }
 </style>

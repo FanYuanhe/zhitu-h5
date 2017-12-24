@@ -2,26 +2,79 @@
   <div class="lecture-list">
     <template v-for="item in lectureList">
       <div class="lecture-item" :class="item.status=='6'?'status-six':''">
-        <p><span class="name">老师:</span><span>{{ item.teacher_name
- }}</span><span class="status" v-if="item.status=='4'">查看教师详情</span><span v-if="item.status=='5'" class="status">已通过</span><span v-if="item.status=='6'" class="status">未通过</span></p>
+        <p>
+          <span class="name">老师:</span>
+          <span>{{ item.teacher_name }}</span>
+          <router-link :to="{ name: 'TeacherDetail', params: { id: item.teacher_id } }">
+            <span class="status" v-if="item.status=='4'">查看教师详情</span>
+          </router-link>
+          <span v-if="item.status=='5'" class="status">已通过</span>
+          <span v-if="item.status=='6'" class="status">未通过</span>
+        </p>
         <p><span class="name">试讲时间:</span><span>{{ item.start_time }}</span></p>
         <p><span class="name">试讲课程:</span><span>{{ item.course_info }}</span></p>
         <p class="btn-box" v-if="item.status=='4'">
-          <span class="btn">试讲通过</span>
-          <span class="btn">试讲不通过</span>
+          <span class="btn" @click="lectureAgree(item)">试讲通过</span>
+          <span class="btn" @click="writeReason(item)">试讲不通过</span>
         </p>
       </div>
     </template>
   </div>
 </template>
 <script>
+import { MessageBox, Toast } from 'mint-ui';
 export default {
   name: 'LectureListComponent',
   props: ['lectureList'],
   data () {
     return {}
   },
-  methods: {},
+  methods: {
+    lectureAgree (item) {
+      this.axios({
+        url: '/api/coursetrial/agree',
+        methods: 'get',
+        params: {
+          id: item.id
+        }
+      }).then((res) => {
+        let dataRes = res.data;
+        if (dataRes.error_code === 0) {
+          item.status = 5;
+        }
+      })
+    },
+    lectureDisAgree (item, reason) {
+      let that = this;
+      that.axios({
+        url: '/api/coursetrial/disagree',
+        methods: 'get',
+        params: {
+          id: item.id,
+          reason: reason
+        }
+      }).then((res) => {
+        let dataRes = res.data;
+        if (dataRes.error_code === 0) {
+          item.status = 6;
+        }
+      })
+    },
+    writeReason (item) {
+      let that = this;
+      MessageBox.prompt('请输入原因').then(({ value, action }) => {
+        if (value === '') {
+          Toast({
+            message: '原因不能为空',
+            position: 'middle',
+            duration: 2000
+          });
+          return;
+        }
+        that.lectureDisAgree(item, value);
+      });
+    }
+  },
   components: {}
 }
 </script>

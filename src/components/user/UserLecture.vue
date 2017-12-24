@@ -30,7 +30,7 @@ export default {
           status: this.status
         }
       }).then((res) => {
-        const dataRes = res.data;
+        let dataRes = res.data;
         if (dataRes.error_code === 0) {
           this.mainInfo = dataRes.data;
         }

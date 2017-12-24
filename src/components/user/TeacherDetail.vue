@@ -73,7 +73,7 @@ export default {
         url: `/api/teacher/info/id/${that.$router.history.current.params.id}`,
         method: 'get'
       }).then((res) => {
-        const dataRes = res.data;
+        let dataRes = res.data;
         if (dataRes.message === 'success') {
           this.mainInfo = dataRes.data;
           Indicator.close();
@@ -87,7 +87,7 @@ export default {
       })
     },
     collect () {
-      const localData = localStorage.getItem('zt_data');
+      let localData = localStorage.getItem('zt_data');
       if (localData !== '' && localData) {
         axiosHeaders.setHeaders();
         if (this.mainInfo.teacher.is_collect === 0) {
@@ -98,7 +98,7 @@ export default {
               tid: this.$router.history.current.params.id
             }
           }).then((res) => {
-            const dataRes = res.data;
+            let dataRes = res.data;
             if (dataRes.error_code === 0) {
               this.mainInfo.teacher.is_collect = 1;
               Toast({
@@ -117,7 +117,7 @@ export default {
               tid: this.$router.history.current.params.id
             }
           }).then((res) => {
-            const dataRes = res.data;
+            let dataRes = res.data;
             if (dataRes.error_code === 0) {
               this.mainInfo.teacher.is_collect = 0;
               Toast({
@@ -133,7 +133,7 @@ export default {
       }
     },
     course () {
-      const localData = localStorage.getItem('zt_data');
+      let localData = localStorage.getItem('zt_data');
       if (localData !== '' && localData) {
         if (this.mainInfo.teacher.is_select === 0) {
           axiosHeaders.setHeaders();
@@ -144,7 +144,7 @@ export default {
               tid: this.$router.history.current.params.id
             }
           }).then((res) => {
-            const dataRes = res.data;
+            let dataRes = res.data;
             if (dataRes.error_code === 0) {
               this.mainInfo.teacher.is_select = 1;
               Toast({

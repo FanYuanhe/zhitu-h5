@@ -38,7 +38,7 @@ export default {
       }
     },
     loginFunc () {
-      const that = this;
+      let that = this;
       console.log(that.phone);
       if (that.phone.length < 11) {
         Toast({

@@ -26,7 +26,7 @@ export default {
           limit: 6
         }
       }).then((res) => {
-        const dataRes = res.data;
+        let dataRes = res.data;
         if (dataRes.message === 'success') {
           this.mainInfo = dataRes.data;
         }

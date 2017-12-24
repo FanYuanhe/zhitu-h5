@@ -53,7 +53,7 @@ export default {
       observer: true,
       observeParents: true
     });
-    const mainInfo = JSON.parse(localStorage.getItem('mainInfo'));
+    let mainInfo = JSON.parse(localStorage.getItem('mainInfo'));
     if (mainInfo && mainInfo !== '') {
       this.mainInfo = mainInfo;
     } else {
@@ -70,7 +70,7 @@ export default {
         url: '/api/index'
       })
       .then((res) => {
-        const dataRes = res.data;
+        let dataRes = res.data;
         if (dataRes.message === 'success') {
           this.mainInfo = dataRes.data;
           localStorage.setItem('mainInfo', JSON.stringify(this.mainInfo));
@@ -85,7 +85,7 @@ export default {
       })
     },
     goUserCenter () {
-      const ztData = localStorage.getItem('zt_data');
+      let ztData = localStorage.getItem('zt_data');
       if (!ztData) {
         location.href = '#/login';
       } else {

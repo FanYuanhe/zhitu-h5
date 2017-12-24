@@ -9,6 +9,8 @@ const PublicPersonalCenter = () => import('@/components/PublicPersonalCenter.vue
 const UserCollect = () => import('@/components/user/UserCollect.vue')
 const UserLecture = () => import('@/components/user/UserLecture.vue')
 const TeacherLecture = () => import('@/components/teacher/TeacherLecture.vue')
+const UserCourse = () => import('@/components/user/UserCourse.vue')
+const TeacherCourse = () => import('@/components/teacher/TeacherCourse.vue')
 Vue.use(Router)
 
 export default new Router({
@@ -57,6 +59,16 @@ export default new Router({
       path: '/teacher_lecture',
       name: 'TeacherLecture',
       component: TeacherLecture
+    },
+    {
+      path: '/user_course',
+      name: 'UserCourse',
+      component: UserCourse
+    },
+    {
+      path: '/teacher_course',
+      name: 'TeacherCourse',
+      component: TeacherCourse
     }
   ]
 })

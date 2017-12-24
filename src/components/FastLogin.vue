@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     getCode () {
-      const that = this;
+      let that = this;
       if (!that.isGetCode) {
         if (that.phone.length < 11) {
           Toast({
@@ -81,8 +81,8 @@ export default {
       }
     },
     cutDownTime () {
-      const that = this;
-      const cutTimer = setInterval(() => {
+      let that = this;
+      let cutTimer = setInterval(() => {
         if (that.timer === 0) {
           that.isGetCode = false;
           that.timer = 60;
@@ -96,7 +96,7 @@ export default {
       }, 1000)
     },
     setPassword () {
-      const that = this;
+      let that = this;
       if (that.password === '') {
         Toast({
           message: '密码不能为空',
@@ -144,7 +144,7 @@ export default {
       }
     },
     loginFunc () {
-      const that = this;
+      let that = this;
       if (that.phone.length < 11) {
         Toast({
           message: '手机号码有误',
