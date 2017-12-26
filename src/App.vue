@@ -13,9 +13,9 @@
         ref="target_1"
         mainButtonStyle="color:#fff;background-color:#26a2ff;"
         style="left:30px;">
-        <div class="my-icon-button indexicon icon-popup" @touchstart="sub_log(1)"><</div>
-        <div class="my-icon-button indexicon icon-popup" @touchstart="sub_log(2)">首页</div>
-        <div class="my-icon-button indexicon icon-popup" @touchstart="sub_log(3)">我的</div>
+        <div class="my-icon-button indexicon icon-popup" @click.stop="sub_log(1)"><</div>
+        <div class="my-icon-button indexicon icon-popup" @click.stop="sub_log(2)">首页</div>
+        <div class="my-icon-button indexicon icon-popup" @click.stop="sub_log(3)">我的</div>
       </mt-palette-button>
     </div>
   </div>
