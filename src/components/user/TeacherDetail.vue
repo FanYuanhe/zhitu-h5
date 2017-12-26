@@ -66,7 +66,7 @@ export default {
   methods: {
     getTeacherDetail () {
       Indicator.open({
-        spinnerType: 'fading-circle'
+        spinnerType: 'snake'
       })
       var that = this;
       that.axios({

@@ -175,7 +175,9 @@ export default {
     },
     loadMore () {
       this.pageOffset += 20;
-      Indicator.open();
+      Indicator.open({
+        spinnerType: 'snake'
+      });
       setTimeout(() => {
         this.getTeacherList();
         Indicator.close();

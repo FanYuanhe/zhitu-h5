@@ -84,7 +84,7 @@ export default {
     },
     getMainInfo () {
       Indicator.open({
-        spinnerType: 'fading-circle'
+        spinnerType: 'snake'
       })
       this.axios({
         method: 'get',
