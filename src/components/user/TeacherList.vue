@@ -5,7 +5,7 @@
       <span :class="moduleSelected=='subject'?'module-selected':'module'" data-module="subject" @click="searchModule($event)">{{ subjectText }}<i></i></span>
       <span :class="moduleSelected=='type'?'module-selected':'module'" data-module="type" @click="searchModule($event)">{{ typeText }}</span>
     </div>
-    <TeacherListComponent :teacherList=teacherListData></TeacherListComponent>
+    <TeacherListComponent :teacherList="teacherListData"></TeacherListComponent>
     <div class="tips" v-if="isShowTips" @click="hideTips">
       <div class="search-select-box">
         <template v-for="item in moduleList">
@@ -175,9 +175,7 @@ export default {
     },
     loadMore () {
       this.pageOffset += 20;
-      Indicator.open({
-        spinnerType: 'fading-circle'
-      });
+      Indicator.open();
       setTimeout(() => {
         this.getTeacherList();
         Indicator.close();

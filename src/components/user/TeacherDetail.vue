@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="teacher-detail" v-if="mainInfo.teacher">
-    <TeacherInfoComponent :teacherDetail=mainInfo.teacher></TeacherInfoComponent>
+    <TeacherInfoComponent :teacherDetail="mainInfo.teacher"></TeacherInfoComponent>
     <div class="info-box">
       <div class="assess-teacher-info" v-if="mainInfo.teacher.intro != ''">
         <p class="title">个人简介</p>
@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="assess-teacher-info" v-if="mainInfo.teacher.teacher_experience.length>0">
-        <p class="title">获奖经历</p>
+        <p class="title">教学经历</p>
         <div class="content">
           <template v-for="item in mainInfo.teacher.teacher_experience">
             <p>{{ item.title }}</p>
@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="assess-teacher-info" v-if="mainInfo.teacher.teacher_case.length>0">
-        <p class="title">家教经历</p>
+        <p class="title">成功案例</p>
         <template v-for="(item, index) in mainInfo.teacher.teacher_case">
           <div class="content" :class="index==mainInfo.teacher.teacher_case.length-1?'':'teach-case-content'">
             <p><span>{{ item.start_time }}</span> 至 <span>{{ item.end_time }}</span></p>
@@ -27,10 +27,10 @@
         </template>
       </div>
     </div>
-    <div class="assess-box assess-teacher-info">
+    <!-- <div class="assess-box assess-teacher-info">
       <p class="title">学生评价</p>
       <TeacherAssessComponent></TeacherAssessComponent>
-    </div>
+    </div> -->
     <div class="order-line">
       <div class="order-text">
         满意就预约吧

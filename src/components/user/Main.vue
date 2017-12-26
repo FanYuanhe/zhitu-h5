@@ -29,7 +29,7 @@
       热门教师
     </div>
     <template v-if="mainInfo.teacher">
-      <TeacherListComponent :teacherList=mainInfo.teacher></TeacherListComponent>
+      <TeacherListComponent :teacherList="mainInfo.teacher"></TeacherListComponent>
     </template>
   </div>
 </template>
@@ -46,6 +46,7 @@ export default {
     }
   },
   mounted () {
+    this.localClear();
     Swiper('.swiper-container', {
       autoplay: '1000',
       loop: true,
@@ -53,14 +54,34 @@ export default {
       observer: true,
       observeParents: true
     });
-    let mainInfo = JSON.parse(localStorage.getItem('mainInfo'));
-    if (mainInfo && mainInfo !== '') {
-      this.mainInfo = mainInfo;
-    } else {
-      this.getMainInfo();
-    }
   },
   methods: {
+    localClear () {
+      let that = this;
+      that.axios({
+        url: `/api/app/c`,
+        method: 'get'
+      }).then((res) => {
+        let resData = res.data;
+        if (resData.error_code === 0) {
+          let version = resData.data.version;
+          let localVersion = localStorage.getItem('version');
+          /* 进入首页后 发现版本号不一致  清除本地缓存 */
+          if (localVersion !== '' && localVersion && localVersion !== version) {
+            localStorage.removeItem('mainInfo'); /* 清除首页缓存 */
+            localStorage.removeItem('condition'); /* 列表页选项 */
+            localStorage.removeItem('teacherListData'); /* 清除教师列表 */
+          };
+          localStorage.setItem('version', version);
+          let mainInfo = JSON.parse(localStorage.getItem('mainInfo'));
+          if (mainInfo && mainInfo !== '') {
+            that.mainInfo = mainInfo;
+          } else {
+            that.getMainInfo();
+          }
+        }
+      })
+    },
     getMainInfo () {
       Indicator.open({
         spinnerType: 'fading-circle'

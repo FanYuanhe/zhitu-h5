@@ -23,7 +23,7 @@
 
 <script>
   import PublicJs from '../static/js/public'
-  import {PaletteButton} from 'mint-ui'
+  import { PaletteButton } from 'mint-ui'
   window.V = PublicJs
   export default {
     name: 'app',

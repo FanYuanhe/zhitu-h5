@@ -32,7 +32,6 @@ if (localData !== '' && localData) {
   const ztData = JSON.parse(localData);
   axios.defaults.headers.common['access-token'] = ztData.token;
 }
-// axios.defaults.headers.common['app_key'] = '34567894567';
 axios.defaults.baseURL = 'http://api.zhituteam.com';
 
 Vue.config.productionTip = false
