@@ -2,7 +2,7 @@
   <div class="login">
     <input v-model="phone" type="text" name="" value="" placeholder="请输入手机号">
     <input v-model="password" type="password" name="" value="" placeholder="请输入密码">
-    <button @click="loginFunc" type="button" name="button">登陆</button>
+    <button @click="loginFunc" type="button" name="button">登录</button>
     <p class="info">登录即代表同意《知途家教》相关规定</p>
     <p class="login-box">
       <span @click="goLogin">没有账号？快捷登录</span>

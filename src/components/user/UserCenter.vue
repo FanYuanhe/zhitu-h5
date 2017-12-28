@@ -3,7 +3,7 @@
   <template>
     <div class="head" v-if="centerInfo">
         <div class="head_img">
-          <img src="../../../static/img/userlogo.png" alt="a">
+          <img :src="centerInfo.image" alt="a">
         </div>
         <div class="head_phone">
           <span class="my_phone">{{centerInfo.phone}}</span>

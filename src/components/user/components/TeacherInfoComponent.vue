@@ -13,9 +13,12 @@
         <span class="teach-times">{{ teacherDetail.price }}</span>
       </p>
       <p class="school">
-        <span>九年教龄</span>
-        <span>中央美术学院</span>
-        <span>物理系</span>
+        <template v-if="teacherDetail.source=='1'">
+          <span>{{ teacherDetail.school }}</span>
+        </template>
+        <template v-if="teacherDetail.source=='2' || teacherDetail.source=='3'">
+          <span>{{ teacherDetail.teach_year }}年教龄</span>
+        </template>
       </p>
       <p class="accept">
         <template v-for="item in teacherDetail.extend_tag">

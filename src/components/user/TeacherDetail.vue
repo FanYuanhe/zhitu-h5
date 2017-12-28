@@ -38,7 +38,7 @@
       <hr>
     </div>
     <div class="order-btn">
-      <div class="btn collect" @click="collect"><span>
+      <div class="btn" :class="mainInfo.teacher.is_collect == '1'? 'collected':'collect'" @click="collect"><span>
         {{ mainInfo.teacher.is_collect == '1'? '已收藏':'收藏' }}
       </span></div>
       <div class="btn order-now" :style="mainInfo.teacher.is_select == '1'?'background:#666':''" @click="course">
@@ -239,7 +239,20 @@ export default {
     .collect {
       width: 15%;
       background: #49a775;
-      background-image: url('../../../static/img/userlogo.png');
+      background-image: url('../../../static/img/detail_star_white.png');
+      background-repeat: no-repeat;
+      background-size: Rem(20) Rem(20);
+      background-position: Rem(18) Rem(6);
+      span {
+        position: relative;
+        top: Rem(12);
+        font-size: Rem(13);
+      }
+    }
+    .collected {
+      width: 15%;
+      background: #49a775;
+      background-image: url('../../../static/img/detail_star_yellow.png');
       background-repeat: no-repeat;
       background-size: Rem(20) Rem(20);
       background-position: Rem(18) Rem(6);
