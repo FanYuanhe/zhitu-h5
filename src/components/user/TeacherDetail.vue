@@ -3,7 +3,7 @@
     <TeacherInfoComponent :teacherDetail="mainInfo.teacher"></TeacherInfoComponent>
     <div class="info-box">
       <div class="assess-teacher-info" v-if="mainInfo.teacher.intro != ''">
-        <p class="title">个人简介</p>
+        <p class="title introduce">个人简介</p>
         <div class="content">
           <p>{{ mainInfo.teacher.intro }}</p>
         </div>
@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="assess-teacher-info" v-if="mainInfo.teacher.teacher_case.length>0">
-        <p class="title">成功案例</p>
+        <p class="title reward">成功案例</p>
         <template v-for="(item, index) in mainInfo.teacher.teacher_case">
           <div class="content" :class="index==mainInfo.teacher.teacher_case.length-1?'':'teach-case-content'">
             <p><span>{{ item.start_time }}</span> 至 <span>{{ item.end_time }}</span></p>
@@ -179,10 +179,16 @@ export default {
       color: #262323;
       display: inline-block;
       padding-left: Rem(18);
-      background-image: url('../../../static/img/accept.png');
+      background-image: url('../../../static/img/detail_introduce.png');
       background-repeat: no-repeat;
       background-size: Rem(15) Rem(15);
       background-position: 0 Rem(2);
+    }
+    .introduce {
+      background-image: url('../../../static/img/detail_teacher.png');
+    }
+    .reward {
+      background-image: url('../../../static/img/detail_reward.png');
     }
     .content {
       padding: Rem(8) 0 Rem(8) Rem(15);

@@ -88,14 +88,12 @@ export default {
         color: #fff;
         border-radius: Rem(3);
         background: #52c644;
+        border: 1px solid #52c644;
       }
       .grade-tag {
-        display: inline-block;
-        // width: Rem(15);
-        text-align: center;
-        height: Rem(15);
-        line-height: Rem(15);
         font-size: Rem(12);
+        display: inline-block;
+        padding: 0 Rem(4);
         border-radius: Rem(3);
         border: 1px solid #097c25;
         color: #097c25;
