@@ -11,6 +11,7 @@ const UserLecture = () => import('@/components/user/UserLecture.vue')
 const TeacherLecture = () => import('@/components/teacher/TeacherLecture.vue')
 const UserCourse = () => import('@/components/user/UserCourse.vue')
 const TeacherCourse = () => import('@/components/teacher/TeacherCourse.vue')
+const AboutZhitu = () => import('@/components/teacher/AboutZhitu.vue')
 Vue.use(Router)
 
 export default new Router({
@@ -69,6 +70,11 @@ export default new Router({
       path: '/teacher_course',
       name: 'TeacherCourse',
       component: TeacherCourse
+    },
+    {
+      path: '/about_zhitu',
+      name: 'AboutZhitu',
+      component: AboutZhitu
     }
   ]
 })

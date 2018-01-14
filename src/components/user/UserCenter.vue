@@ -9,7 +9,7 @@
           <span class="my_phone">{{centerInfo.phone}}</span>
         </div>
         <div class="head_edit">
-          <span class="edit">编辑</span>
+          <!--<span class="edit">编辑</span>-->
         </div>
     </div>
     <div class="user">
