@@ -10,7 +10,7 @@
             <span class="grade-tag">小</span>
             <span class="grade-tag">初</span>
             <span class="grade-tag">高</span>
-          <span class="teach-times">编辑资料</span>
+          <!--<span class="teach-times">编辑资料</span>-->
         </p>
         <p class="accept">
             <span>专职教师</span>
@@ -45,15 +45,17 @@
       </div>
       <div class="detail">
         <ul>
-          <li>
-              <div class="user_left">
-              <img src="../../../static/img/accept.png" alt="a">
-              <span>客服电话</span>
-              </div>
-              <div class="user_right">
-                <span>></span>
-              </div>
-          </li>
+          <a href="tel:15611004123">
+            <li>
+                <div class="user_left">
+                <img src="../../../static/img/accept.png" alt="a">
+                  <span>客服电话</span>
+                </div>
+                <div class="user_right">
+                  <span>></span>
+                </div>
+            </li>
+          </a>
           <li>
               <div class="user_left">
               <img src="../../../static/img/accept.png" alt="a">

@@ -20,7 +20,7 @@
         <p class="title reward">成功案例</p>
         <template v-for="(item, index) in mainInfo.teacher.teacher_case">
           <div class="content" :class="index==mainInfo.teacher.teacher_case.length-1?'':'teach-case-content'">
-            <p><span>{{ item.start_time }}</span> 至 <span>{{ item.end_time }}</span></p>
+            <!--<p><span>{{ item.start_time }}</span> 至 <span>{{ item.end_time }}</span></p>-->
             <p class="teach-title">{{ item.title }}</p>
             <p>{{ item.content }}</p>
           </div>
