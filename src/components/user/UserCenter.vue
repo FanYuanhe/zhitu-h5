@@ -45,6 +45,7 @@
     </div>
     <div class="detail">
       <ul>
+      <a href="tel:15611004123">
         <li>
           <div class="user_left">
             <img src="../../../static/img/accept.png" alt="a">
@@ -54,6 +55,8 @@
             <span>></span>
           </div>
         </li>
+      </a>
+      <router-link :to="{ name: 'AboutZhitu', params: {} }">
         <li>
           <div class="user_left">
             <img src="../../../static/img/accept.png" alt="a">
@@ -63,6 +66,7 @@
             <span>></span>
           </div>
         </li>
+      </router-link>
       </ul>
     </div>
     <div class="remove" @click="signOut">退出登录</div>
