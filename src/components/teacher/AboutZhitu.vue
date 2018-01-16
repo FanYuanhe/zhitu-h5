@@ -30,6 +30,7 @@
 <style lang="scss" scoped>
   @import 'static/css/mixin';
   .about-content{
+    overflow-x: hidden;
     .about-img {
       width: Rem(100);
       height: Rem(100);
@@ -54,7 +55,6 @@
       ul{
         background: #fff;
         li{
-          width: 100%;
           height: Rem(40);
           line-height: Rem(40);
           margin-left: Rem(20);
