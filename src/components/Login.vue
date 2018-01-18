@@ -66,7 +66,7 @@ export default {
       }).then((res) => {
         if (res.data.error_code === 0) {
           Toast({
-            message: '登陆成功',
+            message: '登录成功',
             position: 'middle',
             duration: 2000
           });
