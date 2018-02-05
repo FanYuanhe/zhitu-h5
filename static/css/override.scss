@@ -1,0 +1,16 @@
+@import './mixin';
+
+.mint-cell {
+  .mint-cell-wrapper {
+    .mint-cell-value {
+      span {
+        font-size: 12px;
+      }
+      img {
+        border-radius: Rem(25);
+        width: Rem(50);
+        margin: Rem(5);
+      }
+    }
+  }
+}

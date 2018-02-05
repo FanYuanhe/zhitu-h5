@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 const Main = () => import('@/components/user/Main.vue')
 const TeacherDetail = () => import('@/components/user/TeacherDetail.vue')
 const TeacherList = () => import('@/components/user/TeacherList.vue')
@@ -8,6 +9,7 @@ const FastLogin = () => import('@/components/FastLogin.vue')
 const PublicPersonalCenter = () => import('@/components/PublicPersonalCenter.vue')
 const UserCollect = () => import('@/components/user/UserCollect.vue')
 const UserLecture = () => import('@/components/user/UserLecture.vue')
+const UserInfo = () => import('@/components/user/UserInfo.vue')
 const TeacherLecture = () => import('@/components/teacher/TeacherLecture.vue')
 const UserCourse = () => import('@/components/user/UserCourse.vue')
 const TeacherCourse = () => import('@/components/teacher/TeacherCourse.vue')
@@ -55,6 +57,11 @@ export default new Router({
       path: '/user_lecture',
       name: 'UserLecture',
       component: UserLecture
+    },
+    {
+      path: '/user_info',
+      name: '用户信息',
+      component: UserInfo
     },
     {
       path: '/teacher_lecture',
