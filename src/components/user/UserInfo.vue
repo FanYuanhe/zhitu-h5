@@ -6,18 +6,24 @@
     <mt-cell label="昵称" :value="userInfo.name" is-link></mt-cell>
     <mt-cell label="年级" value="高中" is-link></mt-cell>
     <mt-cell label="性别" value="男" is-link></mt-cell>
-    <mt-cell label="城市" value="城市" is-link></mt-cell>
+    <div @click="selectProvinceCity">
+      <mt-cell label="城市" value="城市" is-link></mt-cell>
+    </div>
     <mt-cell label="常用地址" :value="userInfo.home_address" is-link></mt-cell>
+
+    <province-city ref="prefecturePopup"></province-city>
   </div>
 </template>
 
 <script>
   import {Cell} from 'mint-ui'
+  import ProvinceCity from '../modules/province_city'
 
   export default {
     name: `user-info`,
     components: {
-      'mt-cell': Cell
+      'mt-cell': Cell,
+      'province-city': ProvinceCity
     },
     data () {
       return {
@@ -41,6 +47,11 @@
           self.userInfo = res.data.data.user
         }
       })
+    },
+    methods: {
+      selectProvinceCity: function () {
+        this.$refs.prefecturePopup.showPopup()
+      }
     }
   }
 </script>
