@@ -1,5 +1,5 @@
 <template>
-  <mt-popup v-model="popupVisible" class="sex-popup" :closeOnClickModal="false">
+  <mt-popup v-model="popupVisible" class="sex-popup" :closeOnClickModal="closeOnClickModal">
     <mt-radio
       v-model="value"
       :options="options" @input="handleSelect">
@@ -16,9 +16,19 @@
       'mt-popup': Popup,
       'mt-radio': Radio
     },
+    props: {
+      currentValue: {
+        type: Number,
+        default: 0
+      },
+      closeOnClickModal: {
+        type: Boolean,
+        default: false
+      }
+    },
     data () {
       return {
-        value: '',
+        value: String(this.currentValue),
         popupVisible: false,
         options: [{
           label: '男',

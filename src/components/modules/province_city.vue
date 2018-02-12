@@ -63,7 +63,10 @@
         const self = this
         self.axios({
           url: '/cmn/dictionary/province',
-          method: 'get'
+          method: 'get',
+          params: {
+            service_status: 1
+          }
         }).then((res) => {
           if (res.data.message === 'success') {
             self.provinces = res.data.data
@@ -85,7 +88,10 @@
           self.axios({
             url: `/cmn/dictionary/city`,
             method: 'get',
-            params: {province_id: pid}
+            params: {
+              province_id: pid,
+              service_status: 1
+            }
           }).then(function (res) {
             self.cities = res.data.data
             self.provinceCitySlots[2].values = []
@@ -134,7 +140,7 @@
       // 确定选择省市
       selectProvinceCity () {
         this.popupVisible = false
-        this.$emit('selected', {
+        this.$emit('select', {
           province: this.province,
           city: this.city,
           provinceId: this.provinceId,
