@@ -1,5 +1,5 @@
 <template>
-  <mt-popup v-model="popupVisible" position="bottom" class="province-city-popup">
+  <mt-popup v-model="popupVisible" position="bottom" class="province-city-popup" :closeOnClickModal="false">
     <div class="province-city-popup-operator">
       <span class="left" @click="popupVisible = false">取消</span>
       <span class="right" @click="selectProvinceCity">确定</span></div>
@@ -134,7 +134,12 @@
       // 确定选择省市
       selectProvinceCity () {
         this.popupVisible = false
-        this.$emit('selected', this.provinceId, this.cityId)
+        this.$emit('selected', {
+          province: this.province,
+          city: this.city,
+          provinceId: this.provinceId,
+          cityId: this.cityId
+        })
       }
     }
   }
