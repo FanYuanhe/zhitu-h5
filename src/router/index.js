@@ -13,6 +13,8 @@ const UserInfo = () => import('@/components/user/UserInfo.vue')
 const TeacherLecture = () => import('@/components/teacher/TeacherLecture.vue')
 const UserCourse = () => import('@/components/user/UserCourse.vue')
 const TeacherCourse = () => import('@/components/teacher/TeacherCourse.vue')
+const TeacherInfo = () => import('@/components/teacher/TeacherInfo.vue')
+const TeacherInfoIntroduce = () => import('@/components/teacher/TeacherInfoIntroduce.vue')
 const AboutZhitu = () => import('@/components/teacher/AboutZhitu.vue')
 Vue.use(Router)
 
@@ -77,6 +79,16 @@ export default new Router({
       path: '/teacher_course',
       name: 'TeacherCourse',
       component: TeacherCourse
+    },
+    {
+      path: '/teacher_info',
+      name: 'TeacherInfo',
+      component: TeacherInfo
+    },
+    {
+      path: '/teacher_info_introduce',
+      name: 'TeacherInfoIntroduce',
+      component: TeacherInfoIntroduce
     },
     {
       path: '/about_zhitu',

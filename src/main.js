@@ -36,7 +36,7 @@ if (localData !== '' && localData) {
 axios.defaults.baseURL = 'http://api.zhituteam.com';
 
 Vue.config.productionTip = false
-
+require('./vue-filters')
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
