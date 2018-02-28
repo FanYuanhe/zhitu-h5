@@ -37,6 +37,11 @@
         value: this.currentValue
       }
     },
+    watch: {
+      'currentValue': function (newVal, oldVal) {
+        this.value = newVal
+      }
+    },
     mounted () {
     },
     methods: {
