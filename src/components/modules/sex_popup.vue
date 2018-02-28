@@ -2,7 +2,7 @@
   <mt-popup v-model="popupVisible" class="sex-popup" :closeOnClickModal="closeOnClickModal">
     <mt-radio
       v-model="value"
-      :options="options" @input="handleSelect">
+      :options="options" @input="handleSelect" title="选择性别">
     </mt-radio>
   </mt-popup>
 </template>

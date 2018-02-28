@@ -1,97 +1,134 @@
 <template>
   <div class="teacher_info">
-    <div class="item-box">
-      <div class="item-label">基本信息</div>
-      <mt-cell label="头像" is-link>
-        <img :src="teacherInfo.image" alt="">
-      </mt-cell>
-      <div @click="inputName()">
-        <mt-cell
-          label="姓名"
-          :value="teacherInfo.realname"
-          is-link>
+    <mt-header class="nav-header" title="个人资料" fixed>
+      <router-link to="/public_personal_center" slot="left">
+        <mt-button icon="back"></mt-button>
+      </router-link>
+    </mt-header>
+    <div class="nav-body">
+      <div class="item-box">
+        <div class="item-label">基本信息</div>
+        <mt-cell label="头像" is-link>
+          <img :src="teacherInfo.image" alt="">
         </mt-cell>
+        <div @click="inputName()">
+          <mt-cell
+            label="姓名"
+            :value="teacherInfo.realname"
+            is-link>
+          </mt-cell>
+        </div>
+        <div @click="selectSex">
+          <mt-cell
+            label="性别"
+            :value="teacherInfo.sex_label.label"
+            is-link>
+          </mt-cell>
+        </div>
+        <div @click="inputSchool()">
+          <mt-cell
+            label="毕业院校"
+            :value="teacherInfo.school"
+            is-link>
+          </mt-cell>
+        </div>
+        <div @click="inputMajor()">
+          <mt-cell
+            label="专业"
+            :value="teacherInfo.major"
+            is-link>
+          </mt-cell>
+        </div>
+        <div @click="selectQualification()">
+          <mt-cell
+            label="学历"
+            :value="teacherInfo.qualification_label.label"
+            is-link>
+          </mt-cell>
+        </div>
       </div>
-      <div @click="selectSex">
-        <mt-cell
-          label="性别"
-          :value="teacherInfo.sex_label.label"
-          is-link>
-        </mt-cell>
+
+      <div class="item-box">
+        <div class="item-label">教学概况</div>
+        <div @click="selectTeacherType()">
+          <mt-cell
+            label="教师类型"
+            :value="teacherInfo.type[0].label"
+            is-link>
+          </mt-cell>
+        </div>
+        <div @click="selectTeachGrade()">
+          <mt-cell
+            label="教授年级"
+            :value="teacherInfo.teachGrade"
+            is-link>
+          </mt-cell>
+        </div>
+        <div @click="selectSubject()">
+          <mt-cell
+            label="教授学科"
+            :value="teacherInfo.subject[0].label"
+            is-link>
+          </mt-cell>
+        </div>
+        <div @click="inputTeachYear()">
+          <mt-cell
+            label="教龄(年)"
+            :value="teacherInfo.teach_year"
+            is-link>
+          </mt-cell>
+        </div>
+        <div @click="inputTeachPrice()">
+          <mt-cell
+            label="期望课酬(元/小时)"
+            :value="teacherInfo.realprice"
+            is-link>
+          </mt-cell>
+        </div>
       </div>
-      <div @click="inputSchool()">
-        <mt-cell
-          label="毕业院校"
-          :value="teacherInfo.school"
-          is-link>
-        </mt-cell>
+
+      <div class="item-box">
+        <div class="item-label">个人简历
+          <router-link to="/teacher_info_introduce">
+            <div class="edit">编辑</div>
+          </router-link>
+        </div>
+        <div class="introduce">
+          <span v-if="teacherInfo.intro">{{teacherInfo.intro | substring(100)}}</span>
+        </div>
       </div>
-      <div @click="inputMajor()">
-        <mt-cell
-          label="专业"
-          :value="teacherInfo.major"
-          is-link>
-        </mt-cell>
+
+
+      <div class="item-box">
+        <div class="item-label">成功案例
+          <router-link to="/teacher_info_case">
+            <div class="edit">添加</div>
+          </router-link>
+        </div>
+        <div class="case">
+          <div class="item" v-for="c in teacherInfo.teacher_case">
+            <div class="title">{{c.title}}</div>
+            <div class="date">{{c.start_time}} 至 {{c.end_time}}</div>
+            <div class="content">{{c.content| substring(200)}}</div>
+          </div>
+        </div>
       </div>
-      <div @click="selectQualification()">
-        <mt-cell
-          label="学历"
-          :value="teacherInfo.qualification_label.label"
-          is-link>
-        </mt-cell>
+
+      <div class="item-box">
+        <div class="item-label">教学经历
+          <router-link to="/teacher_info_experience">
+            <div class="edit">添加</div>
+          </router-link>
+        </div>
+        <div class="experience">
+          <div class="item" v-for="c in teacherInfo.teacher_experience">
+            <div class="title">{{c.title}}</div>
+            <div class="date">{{c.start_time}} 至 {{c.end_time}}</div>
+            <div class="content">{{c.content| substring(200)}}</div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="item-box">
-      <div class="item-label">教学概况</div>
-      <div @click="selectTeacherType()">
-        <mt-cell
-          label="教师类型"
-          :value="teacherInfo.type[0].label"
-          is-link>
-        </mt-cell>
-      </div>
-      <div @click="selectTeachGrade()">
-        <mt-cell
-          label="教授年级"
-          :value="teacherInfo.teachGrade"
-          is-link>
-        </mt-cell>
-      </div>
-      <div @click="selectSubject()">
-        <mt-cell
-          label="教授学科"
-          :value="teacherInfo.subject[0].label"
-          is-link>
-        </mt-cell>
-      </div>
-      <div @click="inputTeachYear()">
-        <mt-cell
-          label="教龄(年)"
-          :value="teacherInfo.teach_year"
-          is-link>
-        </mt-cell>
-      </div>
-      <div @click="inputTeachPrice()">
-        <mt-cell
-          label="期望课酬(元/小时)"
-          :value="teacherInfo.realprice"
-          is-link>
-        </mt-cell>
-      </div>
-    </div>
-
-    <div class="item-box">
-      <div class="item-label">个人简历
-        <router-link to="/teacher_info_introduce">
-          <div class="edit">编辑</div>
-        </router-link>
-      </div>
-      <div class="introduce">
-        <span v-if="teacherInfo.intro">{{teacherInfo.intro | substring(100)}}</span>
-      </div>
-    </div>
-
 
     <!--弹窗-->
     <sex
@@ -113,7 +150,7 @@
 </template>
 
 <script>
-  import {Cell, MessageBox} from 'mint-ui'
+  import {Cell, MessageBox, Header, Button} from 'mint-ui'
   import Sex from '../modules/sex_popup'
   import Tag from '../modules/tags_popup'
 
@@ -121,7 +158,9 @@
     components: {
       'mt-cell': Cell,
       'sex': Sex,
-      'tag': Tag
+      'tag': Tag,
+      'mt-header': Header,
+      'mt-button': Button
     },
     data () {
       return {
@@ -139,7 +178,9 @@
           type: [{label: '请选择'}],
           realprice: 0,
           teach_year: 0,
-          intro: ''
+          intro: '',
+          teacher_case: [],
+          teacher_experience: []
         },
         tagPopupMultiple: false,
         tagPopupType: '',
@@ -262,26 +303,49 @@
   @import 'static/css/mixin';
 
   .teacher_info {
-    .item-box {
-      margin-top: Rem(10);
-      .item-label {
-        font-size: 15px;
-        height: Rem(30);
-        line-height: Rem(30);
-        text-indent: Rem(7);
-        .edit {
-          float: right;
-          margin-right: Rem(10);
-          color: #7c7c7c;
-          font-size: 12px;
+    .nav-header {
+      background: #fff;
+      color: #000;
+    }
+    .nav-body {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 40px;
+      .item-box {
+        margin-top: Rem(10);
+        .item-label {
+          font-size: 15px;
+          height: Rem(30);
+          line-height: Rem(30);
+          text-indent: Rem(7);
+          .edit {
+            float: right;
+            margin-right: Rem(10);
+            color: #7c7c7c;
+            font-size: 12px;
+          }
         }
-      }
-      .introduce {
-        min-height: Rem(30);
-        background: #fff;
-        padding: Rem(7);
-        font-size: 14px;
-        line-height: 2;
+        .introduce, .experience, .case {
+          min-height: Rem(30);
+          background: #fff;
+          font-size: 14px;
+          line-height: 2;
+          word-wrap: break-word;
+        }
+        .introduce {
+          padding: Rem(7);
+        }
+        .case, .experience {
+          padding: 0 Rem(7) 0 Rem(7);
+          .item {
+            border-bottom: 1px dashed #c7c7c7;
+            padding: Rem(7);
+            .title {
+              font-weight: bold;
+            }
+          }
+        }
       }
     }
   }

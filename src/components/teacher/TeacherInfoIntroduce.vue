@@ -68,9 +68,5 @@
         font-size: 14px;
       }
     }
-    .btn-default {
-      width: 90%;
-      margin: 5%;
-    }
   }
 </style>
