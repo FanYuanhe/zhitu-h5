@@ -37,6 +37,7 @@ axios.defaults.baseURL = 'http://api.zhituteam.com';
 
 Vue.config.productionTip = false
 require('./vue-filters')
+require('./vue-mixin')
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

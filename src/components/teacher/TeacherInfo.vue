@@ -8,9 +8,11 @@
     <div class="nav-body">
       <div class="item-box">
         <div class="item-label">基本信息</div>
-        <mt-cell label="头像" is-link>
-          <img :src="teacherInfo.image" alt="">
-        </mt-cell>
+        <router-link :to="{path: '/avatar', query: {avatar: teacherInfo.image}}">
+          <mt-cell label="头像" is-link>
+            <img :src="teacherInfo.image" alt="">
+          </mt-cell>
+        </router-link>
         <div @click="inputName()">
           <mt-cell
             label="姓名"
@@ -150,7 +152,7 @@
 </template>
 
 <script>
-  import {Cell, MessageBox, Header, Button} from 'mint-ui'
+  import { Cell, MessageBox, Header, Button } from 'mint-ui'
   import Sex from '../modules/sex_popup'
   import Tag from '../modules/tags_popup'
 

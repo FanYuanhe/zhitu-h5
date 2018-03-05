@@ -23,7 +23,7 @@
 
 <script>
   import PublicJs from '../static/js/public'
-  import {PaletteButton} from 'mint-ui'
+  import { PaletteButton } from 'mint-ui'
 
   window.V = PublicJs
   export default {
@@ -68,7 +68,7 @@
 
 <style lang="scss">
   @import 'static/css/reset';
-  @import 'static/css/override';
+  @import 'static/css/common';
 
   html, body {
     width: 100%;

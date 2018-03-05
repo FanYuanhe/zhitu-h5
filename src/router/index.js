@@ -9,17 +9,13 @@ const FastLogin = () => import('@/components/FastLogin.vue')
 const PublicPersonalCenter = () => import('@/components/PublicPersonalCenter.vue')
 const UserCollect = () => import('@/components/user/UserCollect.vue')
 const UserLecture = () => import('@/components/user/UserLecture.vue')
-const UserInfo = () => import('@/components/user/UserInfo.vue')
 const TeacherLecture = () => import('@/components/teacher/TeacherLecture.vue')
-const UserCourse = () => import('@/components/user/UserCourse.vue')
-const TeacherCourse = () => import('@/components/teacher/TeacherCourse.vue')
-const TeacherInfo = () => import('@/components/teacher/TeacherInfo.vue')
-const TeacherInfoIntroduce = () => import('@/components/teacher/TeacherInfoIntroduce.vue')
-const TeacherInfoCase = () => import('@/components/teacher/TeacherInfoCase.vue')
-const TeacherInfoExperience = () => import('@/components/teacher/TeacherInfoExperience.vue')
 const AboutZhitu = () => import('@/components/teacher/AboutZhitu.vue')
 Vue.use(Router)
 
+/**
+ * (resolve) => require(['@/components/teacher/TeacherInfoCase.vue'], resolve) 这种方式有利于减轻项目第一次加载网页的负担
+ */
 export default new Router({
   routes: [
     {
@@ -65,7 +61,7 @@ export default new Router({
     {
       path: '/user_info',
       name: '用户信息',
-      component: UserInfo
+      component: (resolve) => require(['@/components/user/UserInfo.vue'], resolve)
     },
     {
       path: '/teacher_lecture',
@@ -75,32 +71,37 @@ export default new Router({
     {
       path: '/user_course',
       name: 'UserCourse',
-      component: UserCourse
+      component: (resolve) => require(['@/components/user/UserCourse.vue'], resolve)
     },
     {
       path: '/teacher_course',
       name: 'TeacherCourse',
-      component: TeacherCourse
+      component: (resolve) => require(['@/components/teacher/TeacherCourse.vue'], resolve)
     },
     {
       path: '/teacher_info',
       name: 'TeacherInfo',
-      component: TeacherInfo
+      component: (resolve) => require(['@/components/teacher/TeacherInfo.vue'], resolve)
     },
     {
       path: '/teacher_info_introduce',
       name: 'TeacherInfoIntroduce',
-      component: TeacherInfoIntroduce
+      component: (resolve) => require(['@/components/teacher/TeacherInfoIntroduce.vue'], resolve)
     },
     {
       path: '/teacher_info_case',
       name: 'TeacherInfoCase',
-      component: TeacherInfoCase
+      component: (resolve) => require(['@/components/teacher/TeacherInfoCase.vue'], resolve)
     },
     {
       path: '/teacher_info_experience',
       name: 'TeacherInfoExperience',
-      component: TeacherInfoExperience
+      component: (resolve) => require(['@/components/teacher/TeacherInfoExperience.vue'], resolve)
+    },
+    {
+      path: '/avatar',
+      name: 'Avatar',
+      component: (resolve) => require(['@/components/Avatar.vue'], resolve)
     },
     {
       path: '/about_zhitu',

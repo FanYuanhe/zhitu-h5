@@ -6,9 +6,11 @@
       </router-link>
     </mt-header>
     <div class="nav-body">
-      <mt-cell label="头像" is-link>
-        <img :src="userInfo.image" alt="">
-      </mt-cell>
+      <router-link :to="{path: '/avatar', query: {avatar: userInfo.image}}">
+        <mt-cell label="头像" is-link>
+          <img :src="userInfo.image" alt="">
+        </mt-cell>
+      </router-link>
       <div @click="inputName">
         <mt-cell
           label="姓名"
@@ -173,15 +175,5 @@
 </script>
 
 <style lang="scss">
-  .nav-header {
-    background: #fff;
-    color: #000;
-  }
 
-  .nav-body {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 40px;
-  }
 </style>
