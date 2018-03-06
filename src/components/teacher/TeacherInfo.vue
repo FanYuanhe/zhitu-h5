@@ -189,7 +189,8 @@
         tagPopupKey: '',
         tagPopupValue: 0,
         messageBoxPromptTitle: '',
-        messageBoxPromptKey: ''
+        messageBoxPromptKey: '',
+        messageBoxPromptDefaultValue: ''
       }
     },
     mounted () {
@@ -226,7 +227,7 @@
       },
       messageBoxPrompt () {
         const self = this
-        MessageBox.prompt(self.messageBoxPromptTitle, '').then(({value, action}) => {
+        MessageBox.prompt(self.messageBoxPromptTitle, '', {inputValue: self.messageBoxPromptDefaultValue}).then(({value, action}) => {
           self.modifyTeacherInfo({
             [self.messageBoxPromptKey]: value
           })
@@ -242,16 +243,19 @@
       inputName: function () {
         this.messageBoxPromptTitle = '请输入姓名'
         this.messageBoxPromptKey = 'name'
+        this.messageBoxPromptDefaultValue = this.teacherInfo.realname
         this.messageBoxPrompt()
       },
       inputSchool: function () {
         this.messageBoxPromptTitle = '请输入毕业院校'
         this.messageBoxPromptKey = 'school'
+        this.messageBoxPromptDefaultValue = this.teacherInfo.school
         this.messageBoxPrompt()
       },
       inputMajor: function () {
         this.messageBoxPromptTitle = '请输入专业'
         this.messageBoxPromptKey = 'major'
+        this.messageBoxPromptDefaultValue = this.teacherInfo.major
         this.messageBoxPrompt()
       },
       selectQualification: function () {
@@ -290,11 +294,13 @@
       inputTeachYear: function () {
         this.messageBoxPromptTitle = '请输入教龄'
         this.messageBoxPromptKey = 'teach_year'
+        this.messageBoxPromptDefaultValue = this.teacherInfo.teach_year
         this.messageBoxPrompt()
       },
       inputTeachPrice: function () {
         this.messageBoxPromptTitle = '请输入课时费'
         this.messageBoxPromptKey = 'price'
+        this.messageBoxPromptDefaultValue = this.teacherInfo.realprice
         this.messageBoxPrompt()
       }
     }
