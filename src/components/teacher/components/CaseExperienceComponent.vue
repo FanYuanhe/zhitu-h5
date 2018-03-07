@@ -50,8 +50,8 @@
 </template>
 
 <script>
-  import {Button, Cell, DatetimePicker} from 'mint-ui'
-  import {date} from '@/utils'
+  import { Button, Cell, DatetimePicker } from 'mint-ui'
+  import { date } from '@/utils'
   import InputRightPopup from '@/components/modules/input_right_popup.vue'
 
   export default {
@@ -75,6 +75,24 @@
       }
     },
     mounted () {
+      const self = this
+      if (self.$route.query.type && self.$route.query.id) {
+        self.axios({
+          url: '/api/user/getteacherextend',
+          method: 'get',
+          params: {
+            type: self.$route.query.type,
+            id: self.$route.query.id
+          }
+        }).then((res) => {
+          if (res.data.error_code === 0) {
+            self.info.title = res.data.data.info.title
+            self.info.startDate = res.data.data.info.start_time
+            self.info.endDate = res.data.data.info.end_time
+            self.info.detail = res.data.data.info.content
+          }
+        })
+      }
     },
     methods: {
       handleConfirmDate: function (value) {

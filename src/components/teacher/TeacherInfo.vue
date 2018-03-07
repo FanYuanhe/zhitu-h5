@@ -110,6 +110,9 @@
         <div class="case">
           <div class="item" v-for="c in teacherInfo.teacher_case">
             <div class="title">{{c.title}}</div>
+            <router-link :to="{path: '/teacher_info_case', query: {id: c.id, type:1}}">
+              <div class="edit">编辑</div>
+            </router-link>
             <div class="date">{{c.start_time}} 至 {{c.end_time}}</div>
             <div class="content">{{c.content| substring(200)}}</div>
           </div>
@@ -125,6 +128,9 @@
         <div class="experience">
           <div class="item" v-for="c in teacherInfo.teacher_experience">
             <div class="title">{{c.title}}</div>
+            <router-link :to="{path: '/teacher_info_experience', query: {id: c.id, type: 2}}">
+              <div class="edit">编辑</div>
+            </router-link>
             <div class="date">{{c.start_time}} 至 {{c.end_time}}</div>
             <div class="content">{{c.content| substring(200)}}</div>
           </div>
@@ -349,8 +355,15 @@
           .item {
             border-bottom: 1px dashed #c7c7c7;
             padding: Rem(7);
+            position: relative;
             .title {
               font-weight: bold;
+            }
+            .edit {
+              font-size: 12px;
+              position: absolute;
+              top: 3px;
+              right: 3px;
             }
           }
         }
