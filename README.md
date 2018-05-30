@@ -1,4 +1,4 @@
-# 知途家教[http://www.zhituteam.com/#/]
+# [知途家教]http://www.zhituteam.com/#/
 
 ```
 # 知途家教h5项目（已上线）
