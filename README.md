@@ -2,7 +2,11 @@
 
 > 知途家教h5项目（已上线）
 
-## Build Setup
+## 技术栈
+> vue-cli 参考地址: https://www.npmjs.com/package/vue-cli
+> mint-ui 参考地址: http://mint-ui.github.io/#!/zh-cn
+
+## 项目构建
 
 ``` bash
 # install dependencies
